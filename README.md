@@ -11,6 +11,9 @@ Skeleton of participants module
 
 # Authors
 
+
+- Ignacio Fernández (@scracho)
+- Javier Muhlach (@muhlach)
 - Herminio García González (@herminiogg)
 - Jose Emilio Labra Gayo (@labra)
 
