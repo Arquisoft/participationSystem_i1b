@@ -20,20 +20,23 @@ public class Proposal {
 	@Column(unique = true,nullable = false)
 	private String description;
 	@Column(nullable = false)
-	private Long creatorId;
+	private Long creatorId; //the citizen that creates it
 	@Column(unique = true, nullable = false)
 	private int score;
 	@Column(unique = true, nullable = false)
 	private int numComments;
+	@Column(nullable = false)
+	private Date creationDate;
 	
 	protected Proposal() {}
 
-	public Proposal(String title, String description, Long creatorId, int score, int numComments) {
+	public Proposal(String title, String description, Long creatorId, int score, int numComments, Date creationDate) {
 		this.title = title;
 		this.description = description;
 		this.creatorId = creatorId;
 		this.score = score;
 		this.numComments = numComments;
+		this.creationDate = creationDate;
 	}
 	
 }

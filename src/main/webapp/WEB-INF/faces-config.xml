@@ -14,7 +14,7 @@
 		<navigation-case>
 			<from-action>#{loginController.logIn}</from-action>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/continuacion.xhtml</to-view-id>
+			<to-view-id>/propuestas.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
