@@ -1,4 +1,4 @@
-package persistence;
+package persistence.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import persistence.models.Citizen;
