@@ -1,13 +1,11 @@
 package persistence.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import persistence.models.Citizen;
 
 
-public interface CitizenRepository extends CrudRepository<Citizen, Long> {
+public interface CitizenRepository extends JpaRepository<Citizen, Long> {
 
 	Citizen findByEmail(String email);
-	
-	Citizen findByNif(String Nif);
 	
 }

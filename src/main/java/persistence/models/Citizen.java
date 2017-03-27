@@ -1,11 +1,14 @@
 package persistence.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.Transient;
@@ -16,26 +19,21 @@ public class Citizen {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(nullable = false)
 	private String firstName;
-	@Column(nullable = false)
 	private String lastName;
-	@Column(nullable = false)
 	private Date birthday;
-	@Column(unique = true, nullable = false)
+	@Column(unique = true)
 	private String email;
-	@Column(unique = true, nullable = false)
+	@Column(unique = true)
 	private String nif;
-	@Column
 	private String address;
-	@Column
 	private String nationality;
-	@Column
 	private int pollingStationCode;
-	@Column(nullable = false)
 	private String password;
 	@Transient
 	private String unhashedPassword;
+	@OneToMany(mappedBy="citizen")
+	private List<Proposal> createdProposals= new ArrayList<Proposal>();
 
 	protected Citizen() {}
 
