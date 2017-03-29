@@ -12,8 +12,8 @@ import models.Message;
 @Controller
 public class MainController {
 
-//    @Autowired
-//    private KafkaProducer kafkaProducer;
+    @Autowired
+    private KafkaProducer kafkaProducer;
 
     @RequestMapping("/")
     public String landing(Model model) {
@@ -21,10 +21,10 @@ public class MainController {
         return "login";
     }
     
-//    @RequestMapping("/send")
-//    public String send(Model model, @ModelAttribute Message message) {
-//        kafkaProducer.send("exampleTopic", message.getMessage());
-//        return "redirect:/";
-//    }
+    @RequestMapping("/send")
+    public String send(Model model, @ModelAttribute Message message) {
+        kafkaProducer.send("exampleTopic", message.getMessage());
+        return "redirect:/";
+    }
 
 }

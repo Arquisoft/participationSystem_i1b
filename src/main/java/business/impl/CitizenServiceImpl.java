@@ -2,6 +2,8 @@ package business.impl;
 
 import java.util.List;
 
+import javax.annotation.ManagedBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import persistence.models.Citizen;
 import persistence.repositories.CitizenRepository;
 
 @Component
+@ManagedBean
 public class CitizenServiceImpl implements CitizenService{
 	
 	@Autowired

@@ -23,7 +23,7 @@ import com.sun.faces.config.ConfigureListener;
 
 @SuppressWarnings("deprecation")
 @SpringBootApplication
-@ComponentScan(basePackages = {"controllers"})
+@ComponentScan(basePackages = {"controllers","kafka","impl","persistence"})
 public class Application extends SpringBootServletInitializer implements ServletContextAware {
 
     public static void main(String[] args) {
