@@ -4,12 +4,16 @@ import javax.servlet.ServletContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -18,9 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.sun.faces.config.ConfigureListener;
 
 @SuppressWarnings("deprecation")
-@Controller
 @SpringBootApplication
-@EnableAutoConfiguration
 @ComponentScan(basePackages = {"controllers"})
 public class Application extends SpringBootServletInitializer implements ServletContextAware {
 
@@ -45,6 +47,7 @@ public class Application extends SpringBootServletInitializer implements Servlet
             servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", Boolean.TRUE.toString());
         };
     }
+
     
     @Bean
     public WebMvcConfigurerAdapter forwardToIndex() {
@@ -77,4 +80,11 @@ public class Application extends SpringBootServletInitializer implements Servlet
         servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
 
     }
+    
+    @Bean
+    public EmbeddedServletContainerFactory servletContainer() {
+        TomcatEmbeddedServletContainerFactory factory = 
+                      new TomcatEmbeddedServletContainerFactory();
+        return factory;
+     }
 }
