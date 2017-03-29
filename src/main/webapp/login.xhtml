@@ -5,16 +5,17 @@
 
 	<h:head>
 	</h:head>
-
 	<h:body>
-		<h:form>
-			<h:outputLabel value="User:"></h:outputLabel>
-			<p:inputText value="#{loginController.user}" />
-			
-			<h:outputLabel value="Password:"></h:outputLabel>
-			<p:inputText value="#{loginController.pass}" />
-			
-			<p:commandButton value="Enter" action="#{loginController.logIn}"/>
-		</h:form>
+		<center>
+			<h:form style="margin-top: 200px">
+				<p:panelGrid columns="2">
+					<h:outputLabel value="User:"></h:outputLabel>
+					<p:inputText value="#{loginController.user}" />
+					<h:outputLabel value="Password:"></h:outputLabel>
+					<p:inputText value="#{loginController.pass}" />
+				</p:panelGrid>
+				<p:commandButton value="Enter" action="#{loginController.logIn}" />
+			</h:form>
+		</center>
 	</h:body>
 </f:view>
