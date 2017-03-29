@@ -9,6 +9,9 @@
 
 Skeleton of participants module
 
+# How to run Kafka?
+Use the script.bat in the main folder, but before that you need the kafka folder that you can download from his webpage. Once the script is runnin, you can execute the application
+
 # Authors
 
 
