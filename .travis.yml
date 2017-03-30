@@ -2,10 +2,13 @@ language: java
 sudo: required
 jdk:
 - oraclejdk8
+-services:
+- mysql
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 before_install:
- - chmod +x travis-kafka.sh
+- chmod +x travis-kafka.sh
+- mysql -e 'CREATE DATABASE test;'
 install:
 - ./travis-kafka.sh
 before_script:
