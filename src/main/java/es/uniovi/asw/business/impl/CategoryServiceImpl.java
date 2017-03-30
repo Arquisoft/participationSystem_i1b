@@ -23,8 +23,13 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public void delete(Category category) {
-		
-		
+		try {
+			factories.getPersistenceFactory().getCategoryRepository().delete(category);
+		}
+		catch (IllegalArgumentException e)
+		{
+			System.out.println("There is no such category in the database");
+		}
 	}
 
 	@Override
