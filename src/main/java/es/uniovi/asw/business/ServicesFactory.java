@@ -6,6 +6,7 @@ public interface ServicesFactory {
 	VoteService getVoteService();
 	CommentService getCommentService();
 	ProposalService getProposalService();
+	CategoryService getCategoryService();
 	
 
 }

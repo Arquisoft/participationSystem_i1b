@@ -20,6 +20,7 @@ public class VoteServiceImpl implements VoteService{
 
 	@Override
 	public void save(Vote vote) {
+		
 		factories.getPersistenceFactory().getVoteRepository().save(vote);
 	}
 

@@ -35,6 +35,8 @@ public class Proposal implements Serializable{
 	private List<Comment> comments= new ArrayList<Comment>();
 	@OneToMany(mappedBy="proposal")
 	private List<Vote> votes= new ArrayList<Vote>();
+	@ManyToOne
+	private Category category;
 
 	protected Proposal() {}
 
