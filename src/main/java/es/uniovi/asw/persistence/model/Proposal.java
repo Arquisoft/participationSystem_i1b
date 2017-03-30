@@ -107,7 +107,5 @@ public class Proposal implements Serializable{
 	public List<Vote> getVotes() {
 		return votes;
 	}
-
-
 	
 }

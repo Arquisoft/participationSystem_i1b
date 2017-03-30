@@ -27,14 +27,11 @@ public class Vote {
 		this.citizen = citizen;
 		this.comment = comment;
 	}
-
-
-
 	public Vote(Citizen citizen, Proposal proposal) {
 		this.citizen = citizen;
 		this.proposal = proposal;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

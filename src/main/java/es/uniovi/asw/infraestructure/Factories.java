@@ -15,7 +15,7 @@ public class Factories {
 	@Autowired
 	private static ServicesFactory servicesFactory;
 	
-	public static ServicesFactory getServicesFactory() {
+	public ServicesFactory getServicesFactory() {
 		return servicesFactory;
 	}
 
