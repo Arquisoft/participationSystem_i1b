@@ -1,6 +1,7 @@
 package es.uniovi.asw;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -34,6 +35,8 @@ import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
 import es.uniovi.asw.persistence.model.Vote;
+import es.uniovi.asw.persistence.model.VoteComment;
+import es.uniovi.asw.persistence.model.VoteProposal;
 
 
 @RunWith(SpringRunner.class)
@@ -101,15 +104,18 @@ public class ModelTest {
 		
 		VoteService service = servicesFactory.getVoteService();
 		
-		Vote vote1= new Vote(oscar,coment1);
-		Vote vote2= new Vote(pedro,proposal2);
+		Vote vote1= new VoteComment(oscar,coment1);
+		Vote vote2= new VoteProposal(pedro,proposal2);
 		
 				
 		service.save(vote1);
 		service.save(vote2);
 
-		assertNotNull(service.findByCitizen(oscar));
-		assertNotNull(service.findByCitizen(pedro));
+		assertNotNull(service.findCommentVotesByCitizen(oscar));
+		assertNull(service.findProposalVotesByCitizen(oscar));
+		
+		assertNull(service.findCommentVotesByCitizen(pedro));
+		assertNotNull(service.findProposalVotesByCitizen(oscar));
 		
 
 		

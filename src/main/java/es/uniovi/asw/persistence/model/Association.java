@@ -10,13 +10,21 @@ public class Association {
 		}
 	}
 
-	public static class VotingProposal {
+	public static class Voting {
 
-		public static void link(Citizen citizen, Vote vote, Proposal proposal) {
+		public static void linkProposal(Citizen citizen, VoteProposal vote, Proposal proposal) {
 			vote._setProposal(proposal);
 			vote._setCitizen(citizen);
 
 			proposal._getVotes().add(vote);
+			citizen._getVotes().add(vote);
+		}
+		
+		public static void linkComment(Citizen citizen, VoteComment vote, Comment comment) {
+			vote._setComment(comment);
+			vote._setCitizen(citizen);
+
+			comment._getVotes().add(vote);
 			citizen._getVotes().add(vote);
 		}
 

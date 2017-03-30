@@ -91,8 +91,11 @@ public class Comment {
 	}
 
 	public List<Vote> getVotes() {
-		return votes;
+		return new ArrayList<Vote>();
 	}
 
-
+	public List<Vote> _getVotes() {
+		return votes;
+	}
+	
 }

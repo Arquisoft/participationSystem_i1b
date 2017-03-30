@@ -4,9 +4,10 @@ import java.util.List;
 
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Vote;
+import es.uniovi.asw.persistence.model.VoteComment;
 
 public interface VoteService {
 	void save(Vote vote);
-	List<Vote> findByCitizen(Citizen citizen);
-
+	List<Vote> findCommentVotesByCitizen(Citizen citizen);
+	List<Vote> findProposalVotesByCitizen(Citizen citizen);
 }
