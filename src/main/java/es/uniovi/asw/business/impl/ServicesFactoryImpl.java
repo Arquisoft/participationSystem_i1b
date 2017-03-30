@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.business.ProposalService;
@@ -21,6 +22,8 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	private CommentService commentService;
 	@Autowired
 	private ProposalService proposalService;
+	@Autowired
+	private CategoryService categoryService;
 
 	
 
@@ -42,6 +45,12 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	@Override
 	public ProposalService getProposalService() {
 		return proposalService;
+	}
+
+	@Override
+	public CategoryService getCategoryService() {
+		// TODO Auto-generated method stub
+		return categoryService;
 	}
 	
 }

@@ -14,6 +14,8 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	private CommentRepository commentRepository;
 	@Autowired
 	private ProposalRepository proposalRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	
 	@Override
@@ -31,6 +33,10 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	@Override
 	public ProposalRepository getProposalRepository() {
 		return proposalRepository;
+	}
+	@Override
+	public CategoryRepository getCategoryRepository() {
+		return categoryRepository;
 	}
 
 
