@@ -33,6 +33,8 @@ public class Proposal implements Serializable{
 	private Date creationDate;
 	@OneToMany(mappedBy="proposal")
 	private List<Comment> comments= new ArrayList<Comment>();
+	@OneToMany(mappedBy="proposal")
+	private List<Vote> votes= new ArrayList<Vote>();
 	
 	protected Proposal() {}
 
@@ -100,6 +102,10 @@ public class Proposal implements Serializable{
 
 	public Long getId() {
 		return id;
+	}
+
+	public List<Vote> getVotes() {
+		return votes;
 	}
 
 

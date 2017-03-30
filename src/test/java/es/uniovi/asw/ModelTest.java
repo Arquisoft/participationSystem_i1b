@@ -24,15 +24,21 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import es.uniovi.asw.business.CitizenService;
+import es.uniovi.asw.business.CommentService;
+import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
+import es.uniovi.asw.business.VoteService;
 import es.uniovi.asw.business.impl.ServicesFactoryImpl;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
+import es.uniovi.asw.persistence.model.Comment;
+import es.uniovi.asw.persistence.model.Proposal;
+import es.uniovi.asw.persistence.model.Vote;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ExecutionTest {
+public class ModelTest {
 	
 	@Autowired
 	private ServicesFactory servicesFactory;
@@ -51,7 +57,7 @@ public class ExecutionTest {
 	}
 	
 	@Test
-	public void testCheckUsers() {
+	public void testCitizen() {
 		
 		CitizenService service = servicesFactory.getCitizenService();
 		Citizen gabriel = new Citizen("Gabriel","Reguero",createDate("31/12/1995"), "emailGabriel@test.com","55433455B", "dd","dd", 2);
@@ -66,6 +72,51 @@ public class ExecutionTest {
 		
 
 	}
+	@Test
+	public void testVote() {
+		
+		CitizenService service1 = servicesFactory.getCitizenService();
+		
+		Citizen oscar = new Citizen("Gabriasdael","Reguasdero",createDate("31/12/1995"), "emadsilGabriel@test.com","55433955B", "dd","dd", 2);
+		Citizen pedro = new Citizen("Naasdcho", "Fernasdandez", createDate("08/01/1995"), "emasdilNacho@test.com", "71769768J", "mi casa", "española", 47);
+		
+		service1.save(oscar);
+		service1.save(pedro);
+		
+		ProposalService service3= servicesFactory.getProposalService();
+
+		Proposal proposal1= new Proposal("Hacer que Ana deje becaria", "Ana no em cae bien y quiero que se pire", oscar, 0, createDate("31/12/1985"));
+		Proposal proposal2= new Proposal("Hacer que Luiso vaya a Ingles", "Luiso nunca va a Ingles porque quiere verme", pedro, 0, createDate("31/12/1995"));
+		
+		service3.save(proposal1);
+		service3.save(proposal2);
+		
+		CommentService service2= servicesFactory.getCommentService();
+		
+		Comment coment1= new Comment("¡Qué feo eres!",proposal1,oscar,createDate("08/01/1995"),0);
+		Comment coment2= new Comment("¡Qué guapo eres!",proposal2,pedro,createDate("08/05/1995"),0);
+		
+		service2.save(coment1);
+		service2.save(coment2);
+		
+		VoteService service = servicesFactory.getVoteService();
+		
+		Vote vote1= new Vote(oscar,coment1,proposal1);
+		Vote vote2= new Vote(pedro,coment2,proposal2);
+		
+		
+		
+		service.save(vote1);
+		service.save(vote2);
+
+		assertNotNull(service.findByCitizen(oscar));
+		assertNotNull(service.findByCitizen(pedro));
+		
+
+		
+
+	}
+
 	
 
 }

@@ -34,6 +34,8 @@ public class Citizen {
 	private String unhashedPassword;
 	@OneToMany(mappedBy="citizen")
 	private List<Proposal> createdProposals= new ArrayList<Proposal>();
+	@OneToMany(mappedBy="citizen")
+	private List<Vote> votes= new ArrayList<Vote>();
 
 	protected Citizen() {}
 
@@ -183,6 +185,14 @@ public class Citizen {
 		return "Citizen [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
 				+ ", email=" + email + ", nif=" + nif + ", address=" + address + ", nationality=" + nationality
 				+ ", pollingStationCode=" + pollingStationCode + ", password=" + password + "]";
+	}
+
+	public List<Proposal> getCreatedProposals() {
+		return createdProposals;
+	}
+
+	public List<Vote> getVotes() {
+		return votes;
 	}
 
 }
