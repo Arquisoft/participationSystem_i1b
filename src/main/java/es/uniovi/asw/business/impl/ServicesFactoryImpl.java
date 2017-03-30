@@ -1,6 +1,7 @@
 package es.uniovi.asw.business.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.CitizenService;
@@ -9,7 +10,7 @@ import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
 
-@Service
+@Component
 public class ServicesFactoryImpl implements ServicesFactory {
 
 	@Autowired
@@ -35,13 +36,11 @@ public class ServicesFactoryImpl implements ServicesFactory {
 
 	@Override
 	public CommentService getCommentService() {
-		// TODO Auto-generated method stub
 		return commentService;
 	}
 
 	@Override
 	public ProposalService getProposalService() {
-		// TODO Auto-generated method stub
 		return proposalService;
 	}
 	

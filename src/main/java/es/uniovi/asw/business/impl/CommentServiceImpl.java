@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.CommentService;
+import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.repositories.CommentRepository;
 
@@ -11,25 +12,21 @@ import es.uniovi.asw.persistence.repositories.CommentRepository;
 public class CommentServiceImpl implements CommentService{
 	
 	@Autowired
-	private CommentRepository repository;
+	private Factories factories;
 	
 
 	@Override
 	public void save(Comment comment) {
 		// TODO Auto-generated method stub
-		repository.save(comment);
+		factories.getPersistenceFactory().getCommentRepository().save(comment);
 		
 	}
 
 	@Override
 	public void delete(Comment comment) {
 		// TODO Auto-generated method stub
-		repository.delete(comment);
+		factories.getPersistenceFactory().getCommentRepository().delete(comment);
 		
-	}
-
-	public CommentRepository getRepository() {
-		return repository;
 	}
 
 }

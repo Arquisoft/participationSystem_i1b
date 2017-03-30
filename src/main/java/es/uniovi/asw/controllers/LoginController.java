@@ -1,16 +1,12 @@
 package es.uniovi.asw.controllers;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
 
-@Controller
 @Component("loginController")
 @Scope("request")
 public class LoginController {
@@ -22,10 +18,10 @@ public class LoginController {
 	
 	public String logIn(){
 		
-//		Citizen cit=factoria.getServicesFactory().getCitizenService().findByEmail(user);
-//		
-//		if(cit!=null && pass.equals(cit.getPassword()))
-		if(user.equals("root"))
+		Citizen cit=factoria.getServicesFactory().getCitizenService().findByEmail(user);
+		
+		if(cit!=null && pass.equals(cit.getPassword()))
+//		if(user.equals("root"))
 		{
 			return "success";
 		}

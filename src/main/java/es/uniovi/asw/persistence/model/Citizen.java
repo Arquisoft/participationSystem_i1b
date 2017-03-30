@@ -33,9 +33,11 @@ public class Citizen {
 	@Transient
 	private String unhashedPassword;
 	@OneToMany(mappedBy="citizen")
-	private List<Proposal> createdProposals= new ArrayList<Proposal>();
+	private List<Proposal> proposals= new ArrayList<Proposal>();
 	@OneToMany(mappedBy="citizen")
 	private List<Vote> votes= new ArrayList<Vote>();
+	@OneToMany(mappedBy="citizen")
+	private List<Comment> comments= new ArrayList<Comment>();
 
 	protected Citizen() {}
 
@@ -58,21 +60,21 @@ public class Citizen {
 		this.password = password;
 	}
 
-//	public void setBirthday(Date birthday) {
-//		this.birthday = birthday;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//
-//	public void setAddress(String address) {
-//		this.address = address;
-//	}
-//
-//	public void setNationality(String nationality) {
-//		this.nationality = nationality;
-//	}
+	//	public void setBirthday(Date birthday) {
+	//		this.birthday = birthday;
+	//	}
+	//
+	//	public void setEmail(String email) {
+	//		this.email = email;
+	//	}
+	//
+	//	public void setAddress(String address) {
+	//		this.address = address;
+	//	}
+	//
+	//	public void setNationality(String nationality) {
+	//		this.nationality = nationality;
+	//	}
 
 	public Long getId() {
 		return id;
@@ -187,12 +189,29 @@ public class Citizen {
 				+ ", pollingStationCode=" + pollingStationCode + ", password=" + password + "]";
 	}
 
-	public List<Proposal> getCreatedProposals() {
-		return createdProposals;
+
+
+	List<Comment> _getComments() {
+		return comments;
+	}
+
+	public List<Comment> getComments() {
+		return new ArrayList<Comment>(comments);
+	}
+
+	List<Vote> _getVotes() {
+		return votes;
 	}
 
 	public List<Vote> getVotes() {
-		return votes;
+		return new ArrayList<Vote>(votes);
+	}
+
+	List<Proposal> _getProposals() {
+		return proposals;
+	}
+	public List<Proposal> getProposals() {
+		return new ArrayList<Proposal>(proposals);
 	}
 
 }

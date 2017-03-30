@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table (name="Comment")
 public class Comment {
@@ -58,7 +60,14 @@ public class Comment {
 	}
 
 	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
+		Association.Commenting.link(this.citizen, this);
+	}
+
+	void _setCitizen(Citizen citizen) {
+	
+		this.citizen=citizen;
+
+		
 	}
 
 	public Date getCreationDate() {

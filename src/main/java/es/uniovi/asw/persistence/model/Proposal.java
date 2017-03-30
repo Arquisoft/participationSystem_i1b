@@ -35,7 +35,7 @@ public class Proposal implements Serializable{
 	private List<Comment> comments= new ArrayList<Comment>();
 	@OneToMany(mappedBy="proposal")
 	private List<Vote> votes= new ArrayList<Vote>();
-	
+
 	protected Proposal() {}
 
 	public Proposal(String title, String description, Citizen citizen, int score, Date creationDate) {
@@ -67,9 +67,7 @@ public class Proposal implements Serializable{
 		return citizen;
 	}
 
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
-	}
+
 
 	public int getScore() {
 		return score;
@@ -88,7 +86,7 @@ public class Proposal implements Serializable{
 	}
 
 	public List<Comment> getComments() {
-		
+
 		return comments;
 	}
 
@@ -105,7 +103,20 @@ public class Proposal implements Serializable{
 	}
 
 	public List<Vote> getVotes() {
+		return new ArrayList<Vote>(votes);
+	}
+
+	List<Vote> _getVotes() {
+		// TODO Auto-generated method stub
 		return votes;
 	}
-	
+
+	void _setCitizen(Citizen citizen2) {
+		this.citizen=citizen2;
+
+	}
+	public void setCitizen(Citizen citizen) {
+		Association.Propose.link(citizen, this);
+	}
+
 }

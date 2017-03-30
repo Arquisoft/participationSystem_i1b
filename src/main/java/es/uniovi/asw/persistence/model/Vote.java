@@ -48,6 +48,22 @@ public class Vote {
 		return proposal;
 	}
 
+	public void setProposal(Proposal proposal2) {
+		Association.VotingProposal.link(citizen, this, proposal2);
+	}
+	void _setProposal(Proposal proposal2) {
+		this.proposal=proposal2;
+	}
+
+	void _setCitizen(Citizen citizen2) {
+		this.citizen=citizen2;
+		
+	}
+
+	public void setCitizen(Citizen citizen2) {
+		Association.VotingProposal.link(citizen2, this, proposal);
+		
+	}
 
 	
 

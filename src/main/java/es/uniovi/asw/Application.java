@@ -25,6 +25,7 @@ import com.sun.faces.config.ConfigureListener;
 @SuppressWarnings("deprecation")
 @SpringBootApplication
 @ComponentScan(basePackages = {"es.uniovi.asw"})
+@EnableJpaRepositories("es.uniovi.asw.persistence.repositories")
 public class Application extends SpringBootServletInitializer implements ServletContextAware {
 
     public static void main(String[] args) {
@@ -32,7 +33,6 @@ public class Application extends SpringBootServletInitializer implements Servlet
         app.run(args);
         
     }
-
     @Bean
     public ServletRegistrationBean facesServletRegistraiton() {
         ServletRegistrationBean registration = new ServletRegistrationBean(new FacesServlet(), "*.xhtml");

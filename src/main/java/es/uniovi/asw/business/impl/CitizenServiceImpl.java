@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.CitizenService;
+import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.repositories.CitizenRepository;
 
@@ -13,12 +14,12 @@ import es.uniovi.asw.persistence.repositories.CitizenRepository;
 public class CitizenServiceImpl implements CitizenService{
 	
 	@Autowired
-	private CitizenRepository citizenRepository;
+	private Factories factories;
 
 	@Override
 	public void save(Citizen citizen) {
 		// TODO Auto-generated method stub
-		citizenRepository.save(citizen);
+		factories.getPersistenceFactory().getCitizenRepository().save(citizen);
 	}
 
 	@Override
@@ -29,18 +30,14 @@ public class CitizenServiceImpl implements CitizenService{
 	@Override
 	public List<Citizen> findAll() {
 		// TODO Auto-generated method stub
-		return citizenRepository.findAll();
+		return factories.getPersistenceFactory().getCitizenRepository().findAll();
 	}
 
 	@Override
 	public Citizen findByEmail(String email) {
 		// TODO Auto-generated method stub
 		
-		return citizenRepository.findByEmail(email);
-	}
-
-	public CitizenRepository getCitizenRepository() {
-		return citizenRepository;
+		return factories.getPersistenceFactory().getCitizenRepository().findByEmail(email);
 	}
 
 }
