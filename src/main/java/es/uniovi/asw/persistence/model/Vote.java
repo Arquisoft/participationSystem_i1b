@@ -23,13 +23,17 @@ public class Vote {
 	
 	public Vote(){}
 
-	public Vote(Citizen citizen, Comment comment, Proposal proposal) {
+	public Vote(Citizen citizen, Comment comment) {
 		this.citizen = citizen;
 		this.comment = comment;
-		this.proposal = proposal;
 	}
 
 
+
+	public Vote(Citizen citizen, Proposal proposal) {
+		this.citizen = citizen;
+		this.proposal = proposal;
+	}
 
 	public Long getId() {
 		return id;
