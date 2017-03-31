@@ -1,27 +1,19 @@
 package es.uniovi.asw;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
@@ -29,8 +21,6 @@ import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
-import es.uniovi.asw.business.impl.ServicesFactoryImpl;
-import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
@@ -43,6 +33,8 @@ import es.uniovi.asw.persistence.model.VoteProposal;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ModelTest {
+	
+	
 	
 	@Autowired
 	private ServicesFactory servicesFactory;
@@ -124,7 +116,54 @@ public class ModelTest {
 		assertEquals(0,service.findCommentVotesByCitizen(pedro).size());
 		assertEquals(1,service.findProposalVotesByCitizen(pedro).size());
 		
+		
+//		catService.delete(sports);
+//		catService.delete(travels);
 
+	}
+	@Test
+	public void testDeletAndListCitizen() {
+		
+		CitizenService service1 = servicesFactory.getCitizenService();
+		
+		Citizen juaaaan = new Citizen("Gabriasdael","Reguasdero",createDate("31/12/1995"), "emadssddilGabriel@test.com","5543325B", "dd","dd", 2);
+		Citizen matheusss = new Citizen("Naasdcho", "Fernasdandez", createDate("08/01/1995"), "emasdssssilNacho@test.com", "769768J", "mi casa", "española", 47);
+		
+		service1.save(juaaaan);
+		service1.save(matheusss);
+		
+		assertNotNull(service1.findAll());
+		
+		service1.delete(juaaaan);
+		service1.delete(matheusss);
+		
+		assertNull(service1.findByEmail(juaaaan.getEmail()));
+		assertNull(service1.findByEmail(matheusss.getEmail()));
+		
+		
+
+	}
+	@Test
+	public void testCategory() {
+		
+		CategoryService service= servicesFactory.getCategoryService();
+
+		Category cat1=new Category("social");
+		Category cat2=new Category("media");
+		Category cat3= new Category("sports");
+		
+		service.save(cat1);
+		service.save(cat3);
+		
+		service.delete(cat1);
+		service.delete(cat2);
+		
+		assertNotNull(service.findAll());
+		
+		service.delete(cat3);
+		
+		//assertNull(service.findAll()); si lo dejamos en el primer metodo hay que quitar la otras 2 categorias
+		
 		
 
 	}

@@ -18,24 +18,21 @@ public class CitizenServiceImpl implements CitizenService{
 
 	@Override
 	public void save(Citizen citizen) {
-		// TODO Auto-generated method stub
 		factories.getPersistenceFactory().getCitizenRepository().save(citizen);
 	}
 
 	@Override
 	public void delete(Citizen citizen) {
-		// TODO Auto-generated method stub
+		factories.getPersistenceFactory().getCitizenRepository().delete(citizen);
 	}
 
 	@Override
 	public List<Citizen> findAll() {
-		// TODO Auto-generated method stub
 		return factories.getPersistenceFactory().getCitizenRepository().findAll();
 	}
 
 	@Override
 	public Citizen findByEmail(String email) {
-		// TODO Auto-generated method stub
 		
 		return factories.getPersistenceFactory().getCitizenRepository().findByEmail(email);
 	}

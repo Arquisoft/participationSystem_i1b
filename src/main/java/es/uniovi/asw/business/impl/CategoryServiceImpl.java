@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Category;
-import es.uniovi.asw.persistence.model.Comment;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
@@ -36,5 +35,11 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<Category> findAll() {
 		return factories.getPersistenceFactory().getCategoryRepository().findAll();
 	}
+
+//	@Override
+//	public Category findCategory(String category) {
+//		return factories.getPersistenceFactory().getCategoryRepository().(category);
+//
+//	}
 
 }
