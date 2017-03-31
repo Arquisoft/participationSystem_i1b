@@ -12,6 +12,10 @@ public class VoteComment extends Vote{
 
 	@ManyToOne
 	private Comment comment;
+	
+	public VoteComment(){
+		
+	}
 
 	public VoteComment(Citizen citizen, Comment comment) {
 		super(citizen);

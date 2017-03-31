@@ -34,7 +34,7 @@ public class VoteServiceImpl implements VoteService{
 	//cast it to ProposalComment when u iterate over it
 	@Override
 	public List<Vote> findProposalVotesByCitizen(Citizen citizen) {
-		return factories.getPersistenceFactory().getVoteRepository().findCommentVotesByCitizen(citizen);
+		return factories.getPersistenceFactory().getVoteRepository().findProposalVotesByCitizen(citizen);
 	}
 
 

@@ -1,7 +1,6 @@
 package es.uniovi.asw;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -119,11 +118,11 @@ public class ModelTest {
 		service.save(vote1);
 		service.save(vote2);
 
-		assertNotNull(service.findCommentVotesByCitizen(oscar));
-		assertNull(service.findProposalVotesByCitizen(oscar));
+		assertEquals(1, service.findCommentVotesByCitizen(oscar).size());
+		assertEquals(0,service.findProposalVotesByCitizen(oscar).size());
 		
-		assertNull(service.findCommentVotesByCitizen(pedro));
-		assertNotNull(service.findProposalVotesByCitizen(oscar));
+		assertEquals(0,service.findCommentVotesByCitizen(pedro).size());
+		assertEquals(1,service.findProposalVotesByCitizen(pedro).size());
 		
 
 		

@@ -13,6 +13,8 @@ public class VoteProposal extends Vote{
 	@ManyToOne
 	private Proposal proposal;
 	
+	public VoteProposal(){}
+	
 	public VoteProposal(Citizen citizen, Proposal prop) {
 		super(citizen);
 		this.proposal = prop;

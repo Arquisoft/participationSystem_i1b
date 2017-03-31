@@ -19,6 +19,8 @@ public class Category {
 	@OneToMany(mappedBy="category")
 	private List<Proposal> proposals= new ArrayList<Proposal>();
 	
+	public Category(){}
+	
 	public Category(String name) {
 		this.name = name;
 	}
