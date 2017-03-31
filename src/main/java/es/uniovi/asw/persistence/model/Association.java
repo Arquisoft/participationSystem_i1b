@@ -1,7 +1,5 @@
 package es.uniovi.asw.persistence.model;
 
-import org.junit.experimental.categories.Categories;
-
 public class Association {
 
 	public static class Commenting {
