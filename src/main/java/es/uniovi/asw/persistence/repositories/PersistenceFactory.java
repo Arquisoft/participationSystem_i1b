@@ -9,4 +9,5 @@ public interface PersistenceFactory {
 	CategoryRepository getCategoryRepository();
 	ConfigurationRepository getConfigurationRepository();
 	ForbiddenWordsRepository getForbiddenWordsRepository();
+	AdministratorRepository getAdministratorRepository();
 }

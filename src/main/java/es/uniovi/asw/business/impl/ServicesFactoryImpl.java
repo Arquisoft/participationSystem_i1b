@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import es.uniovi.asw.business.AdministratorService;
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.business.ConfigurationService;
+import es.uniovi.asw.business.ForbiddenWordsService;
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
@@ -27,8 +29,10 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	private CategoryService categoryService;
 	@Autowired
 	private ConfigurationService configurationService;
-
-	
+	@Autowired
+	private ForbiddenWordsService forbiddenWordsService;
+	@Autowired
+	private AdministratorService administratorService;	
 
 	@Override
 	public CitizenService getCitizenService() {
@@ -58,6 +62,16 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	@Override
 	public ConfigurationService getConfigurationService() {
 		return configurationService;
+	}
+
+	@Override
+	public ForbiddenWordsService getForbiddenWordsService() {
+		return forbiddenWordsService;
+	}
+
+	@Override
+	public AdministratorService getAdministratorService() {
+		return administratorService;
 	}
 	
 }

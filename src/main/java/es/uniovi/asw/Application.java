@@ -30,8 +30,7 @@ public class Application extends SpringBootServletInitializer implements Servlet
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
-        app.run(args);
-        
+        app.run(args);        
     }
     @Bean
     public ServletRegistrationBean facesServletRegistraiton() {

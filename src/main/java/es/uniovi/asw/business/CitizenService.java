@@ -10,5 +10,5 @@ public interface CitizenService {
 	void delete(Citizen citizen);
 	List<Citizen> findAll();
 	Citizen findByEmail(String email);
-
+	boolean checkLogin(String email,String pass);
 }

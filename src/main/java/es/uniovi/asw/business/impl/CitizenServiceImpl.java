@@ -37,4 +37,14 @@ public class CitizenServiceImpl implements CitizenService{
 		return factories.getPersistenceFactory().getCitizenRepository().findByEmail(email);
 	}
 
+	@Override
+	public boolean checkLogin(String email, String pass) {
+		Citizen c = null;
+		c = findByEmail(email);
+		if(c != null && c.getPassword().equals(pass)) {
+			return true;
+		}
+		return false;
+	}
+
 }

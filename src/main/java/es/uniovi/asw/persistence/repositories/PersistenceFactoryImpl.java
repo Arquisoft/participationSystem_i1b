@@ -20,6 +20,8 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	private ConfigurationRepository configurationRepository;
 	@Autowired
 	private ForbiddenWordsRepository forbiddenWordsRepository;
+	@Autowired
+	private AdministratorRepository administratorRepository;
 	
 	
 	@Override
@@ -49,6 +51,10 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	@Override
 	public ForbiddenWordsRepository getForbiddenWordsRepository() {
 		return forbiddenWordsRepository;
+	}
+	@Override
+	public AdministratorRepository getAdministratorRepository() {
+		return administratorRepository;
 	}
 
 

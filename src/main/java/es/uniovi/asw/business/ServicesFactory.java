@@ -8,6 +8,6 @@ public interface ServicesFactory {
 	ProposalService getProposalService();
 	CategoryService getCategoryService();
 	ConfigurationService getConfigurationService();
-	
-
+	ForbiddenWordsService getForbiddenWordsService();
+	AdministratorService getAdministratorService();
 }
