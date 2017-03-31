@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
+import es.uniovi.asw.business.ConfigurationService;
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
@@ -24,6 +25,8 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	private ProposalService proposalService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private ConfigurationService configurationService;
 
 	
 
@@ -49,8 +52,12 @@ public class ServicesFactoryImpl implements ServicesFactory {
 
 	@Override
 	public CategoryService getCategoryService() {
-		// TODO Auto-generated method stub
 		return categoryService;
+	}
+
+	@Override
+	public ConfigurationService getConfigurationService() {
+		return configurationService;
 	}
 	
 }

@@ -27,7 +27,7 @@ public class Comment {
 	private Date creationDate;
 	private int score;
 	@OneToMany(mappedBy="comment")
-	private List<Vote> votes= new ArrayList<Vote>();
+	private List<VoteComment> votes= new ArrayList<VoteComment>();
 	
 	public Comment(){}
 
@@ -90,11 +90,11 @@ public class Comment {
 		return id;
 	}
 
-	public List<Vote> getVotes() {
-		return new ArrayList<Vote>();
+	public List<VoteComment> getVotes() {
+		return new ArrayList<VoteComment>();
 	}
 
-	public List<Vote> _getVotes() {
+	public List<VoteComment> _getVotes() {
 		return votes;
 	}
 	

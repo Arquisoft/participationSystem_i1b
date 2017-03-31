@@ -16,6 +16,10 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	private ProposalRepository proposalRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private ConfigurationRepository configurationRepository;
+	@Autowired
+	private ForbiddenWordsRepository forbiddenWordsRepository;
 	
 	
 	@Override
@@ -37,6 +41,14 @@ public class PersistenceFactoryImpl implements PersistenceFactory{
 	@Override
 	public CategoryRepository getCategoryRepository() {
 		return categoryRepository;
+	}
+	@Override
+	public ConfigurationRepository getConfigurationRepository() {
+		return configurationRepository;
+	}
+	@Override
+	public ForbiddenWordsRepository getForbiddenWordsRepository() {
+		return forbiddenWordsRepository;
 	}
 
 

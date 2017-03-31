@@ -23,4 +23,24 @@ public class Category {
 		this.name = name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Proposal> getProposals() {
+		return new ArrayList<Proposal>(proposals);
+	}
+	
+	List<Proposal> _getProposals() {
+		return proposals;
+	}
+
+	public void setProposals(List<Proposal> proposals) {
+		this.proposals = proposals;
+	}
+
 }

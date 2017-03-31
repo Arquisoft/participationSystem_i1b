@@ -1,5 +1,7 @@
 package es.uniovi.asw.persistence.model;
 
+import org.junit.experimental.categories.Categories;
+
 public class Association {
 
 	public static class Commenting {
@@ -35,6 +37,30 @@ public class Association {
 //			vote._setProposal(null);
 //			vote._setCitizen(null);
 //		}
+	}
+	
+	public static class CategorizeProposal { //link for proposalsand categories
+		public static void link(Category cat, Proposal prop) {
+			prop._setCategory(cat);
+			cat._getProposals().add(prop);
+		}
+	}
+	
+	public static class ConfigureForbiddenWords {
+		
+		public static void link(Configuration config, ForbiddenWords word) {
+			word._setConf(config);
+			config._getForbiddenWords().add(word);
+		}
+
+		public static void unlink(Configuration config, ForbiddenWords word) {
+			config._getForbiddenWords().remove(word);
+			word._setConf(null);
+		}
+	}
+	
+	public static class ConfigureCategories {
+		
 	}
 
 	public static class Propose {

@@ -34,19 +34,20 @@ public class Proposal implements Serializable{
 	@OneToMany(mappedBy="proposal")
 	private List<Comment> comments= new ArrayList<Comment>();
 	@OneToMany(mappedBy="proposal")
-	private List<Vote> votes= new ArrayList<Vote>();
+	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
 	@ManyToOne
 	private Category category;
 
 	protected Proposal() {}
 
-	public Proposal(String title, String description, Citizen citizen, int score, Date creationDate) {
+	public Proposal(String title, String description, Citizen citizen, int score, Date creationDate, Category cat) {
 		super();
 		this.title = title;
 		this.description = description;
 		this.citizen = citizen;
 		this.score = score;
 		this.creationDate = creationDate;
+		setCategory(cat);
 	}
 
 	public String getTitle() {
@@ -68,8 +69,6 @@ public class Proposal implements Serializable{
 	public Citizen getCitizen() {
 		return citizen;
 	}
-
-
 
 	public int getScore() {
 		return score;
@@ -104,12 +103,11 @@ public class Proposal implements Serializable{
 		return id;
 	}
 
-	public List<Vote> getVotes() {
-		return new ArrayList<Vote>(votes);
+	public List<VoteProposal> getVotes() {
+		return new ArrayList<VoteProposal>(votes);
 	}
 
-	List<Vote> _getVotes() {
-		// TODO Auto-generated method stub
+	List<VoteProposal> _getVotes() {
 		return votes;
 	}
 
@@ -119,6 +117,18 @@ public class Proposal implements Serializable{
 	}
 	public void setCitizen(Citizen citizen) {
 		Association.Propose.link(citizen, this);
+	}
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		Association.CategorizeProposal.link(category, this);
+	}
+	
+	void _setCategory(Category category){
+		this.category = category;
 	}
 
 }

@@ -7,6 +7,6 @@ public interface PersistenceFactory {
 	CommentRepository getCommentRepository();
 	ProposalRepository getProposalRepository();
 	CategoryRepository getCategoryRepository();
-	
-
+	ConfigurationRepository getConfigurationRepository();
+	ForbiddenWordsRepository getForbiddenWordsRepository();
 }

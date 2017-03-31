@@ -18,7 +18,6 @@ public class VoteServiceImpl implements VoteService{
 	@Autowired
 	private Factories factories;
 
-
 	@Override
 	public void save(Vote vote) {
 		

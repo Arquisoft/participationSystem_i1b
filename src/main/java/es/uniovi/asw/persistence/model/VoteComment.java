@@ -6,8 +6,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("P")
-@Table(name="VoteProposal")
+@DiscriminatorValue("C")
+@Table(name="VoteComment")
 public class VoteComment extends Vote{
 
 	@ManyToOne
@@ -16,6 +16,7 @@ public class VoteComment extends Vote{
 	public VoteComment(Citizen citizen, Comment comment) {
 		super(citizen);
 		this.comment = comment;
+		Association.Voting.linkComment(super.getCitizen(), this, comment);
 	}
 
 	public void setComment(Comment comment){

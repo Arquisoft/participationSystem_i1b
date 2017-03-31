@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.business.ProposalService;
@@ -31,6 +32,7 @@ import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
 import es.uniovi.asw.business.impl.ServicesFactoryImpl;
 import es.uniovi.asw.infraestructure.Factories;
+import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
@@ -86,10 +88,16 @@ public class ModelTest {
 		service1.save(oscar);
 		service1.save(pedro);
 		
+		CategoryService catService = servicesFactory.getCategoryService();
+		Category sports = new Category("Sport");
+		Category travels = new Category("Travels");
+		catService.save(sports);
+		catService.save(travels);
+		
 		ProposalService service3= servicesFactory.getProposalService();
 
-		Proposal proposal1= new Proposal("Hacer que Ana deje becaria", "Ana no em cae bien y quiero que se pire", oscar, 0, createDate("31/12/1985"));
-		Proposal proposal2= new Proposal("Hacer que Luiso vaya a Ingles", "Luiso nunca va a Ingles porque quiere verme", pedro, 0, createDate("31/12/1995"));
+		Proposal proposal1= new Proposal("Hacer que Ana deje becaria", "Ana no em cae bien y quiero que se pire", oscar, 0, createDate("31/12/1985"), sports);
+		Proposal proposal2= new Proposal("Hacer que Luiso vaya a Ingles", "Luiso nunca va a Ingles porque quiere verme", pedro, 0, createDate("31/12/1995"), travels);
 		
 		service3.save(proposal1);
 		service3.save(proposal2);
