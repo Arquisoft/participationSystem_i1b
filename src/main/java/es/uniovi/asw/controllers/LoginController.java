@@ -24,10 +24,10 @@ public class LoginController {
 		Administrator admin = new Administrator("admin", "admin");
 		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
 		
-		if(factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass)) {
+		if(factoria.getServicesFactory().getAdministratorService().checkLogin(admin.getUsername(), admin.getPassword())) {
 			return "conf";
 		}
-		else if(factoria.getServicesFactory().getCitizenService().checkLogin(user, pass)) {
+		else if(factoria.getServicesFactory().getCitizenService().checkLogin(nacho.getEmail(), nacho.getPassword())) {
 			return "citizen";
 		}
 		else {
