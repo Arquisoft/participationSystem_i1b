@@ -1,8 +1,6 @@
 package es.uniovi.asw;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import es.uniovi.asw.business.AdministratorService;
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
+import es.uniovi.asw.persistence.model.Administrator;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
@@ -166,6 +166,25 @@ public class ModelTest {
 		
 		
 
+	}
+	
+	@Test
+	public void adminTest(){
+		
+		AdministratorService service5= servicesFactory.getAdministratorService();
+		
+		Administrator admin= new Administrator("admin","admin");
+		
+		service5.save(admin);
+		
+		assertTrue(service5.checkLogin(admin.getUsername(), admin.getPassword()));
+		
+		service5.delete(admin);
+		
+		assertFalse(service5.checkLogin(admin.getUsername(), admin.getPassword()));
+		
+		
+		
 	}
 
 	

@@ -23,4 +23,16 @@ public class AdministratorServiceImpl implements AdministratorService{
 		}
 		return false;
 	}
+
+	@Override
+	public void save(Administrator admin) {
+		factories.getPersistenceFactory().getAdministratorRepository().save(admin);
+		
+	}
+
+	@Override
+	public void delete(Administrator admin) {
+		factories.getPersistenceFactory().getAdministratorRepository().delete(admin);
+		
+	}
 }
