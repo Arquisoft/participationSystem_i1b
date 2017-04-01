@@ -1,6 +1,10 @@
 package es.uniovi.asw;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -163,9 +167,6 @@ public class ModelTest {
 		service.delete(cat3);
 		
 		//assertNull(service.findAll()); si lo dejamos en el primer metodo hay que quitar la otras 2 categorias
-		
-		
-
 	}
 	
 	@Test
@@ -183,8 +184,31 @@ public class ModelTest {
 		
 		assertFalse(service5.checkLogin(admin.getUsername(), admin.getPassword()));
 		
+	}
+	
+	@Test
+	public void proposalTest(){
+		CitizenService citService= servicesFactory.getCitizenService();
 		
+		Citizen javier=new Citizen("Javier", "muhlach", createDate("23/06/1995"), "javer@javier.es", "324234j", "ds", "es", 1);
 		
+		citService.save(javier);
+		
+		CategoryService catService= servicesFactory.getCategoryService();
+		
+		Category categroy1=new Category("cosasnasis");
+		
+		catService.save(categroy1);
+		
+		ProposalService serviceprop= servicesFactory.getProposalService();
+		
+
+		Proposal prop1= new Proposal("dale moreno", "ummmmm", javier, 23, createDate("10/05/2015"), categroy1);
+		
+		serviceprop.save(prop1);
+		assertNotNull(serviceprop.findAll());
+		serviceprop.delete(prop1);
+
 	}
 
 	
