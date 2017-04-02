@@ -21,13 +21,14 @@ public class LoginController {
 	
 	public String logIn(){
 		
-		Administrator admin = new Administrator("admin", "admin");
-		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
+//		Administrator admin = new Administrator("admin", "admin");
+//		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
+//		factoria.getServicesFactory().getCitizenService().save(nacho);
 		
-		if(factoria.getServicesFactory().getAdministratorService().checkLogin(admin.getUsername(), admin.getPassword())) {
+		if(factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass)) {
 			return "conf";
 		}
-		else if(factoria.getServicesFactory().getCitizenService().checkLogin(nacho.getEmail(), nacho.getPassword())) {
+		else if(factoria.getServicesFactory().getCitizenService().checkLogin(user, pass)) {
 			return "citizen";
 		}
 		else {
