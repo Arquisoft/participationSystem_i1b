@@ -11,7 +11,7 @@ import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Proposal;
 
-@Component("proposalController")
+@Component("newProposalController")
 @Scope("request")
 public class ProposalController {
 	
