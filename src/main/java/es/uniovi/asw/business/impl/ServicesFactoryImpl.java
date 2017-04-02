@@ -2,7 +2,6 @@ package es.uniovi.asw.business.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.AdministratorService;
 import es.uniovi.asw.business.CategoryService;

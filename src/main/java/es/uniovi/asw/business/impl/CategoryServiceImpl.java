@@ -35,11 +35,4 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<Category> findAll() {
 		return factories.getPersistenceFactory().getCategoryRepository().findAll();
 	}
-
-//	@Override
-//	public Category findCategory(String category) {
-//		return factories.getPersistenceFactory().getCategoryRepository().(category);
-//
-//	}
-
 }

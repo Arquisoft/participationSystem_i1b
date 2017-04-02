@@ -9,8 +9,6 @@ import es.uniovi.asw.business.VoteService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Vote;
-import es.uniovi.asw.persistence.model.VoteComment;
-import es.uniovi.asw.persistence.repositories.VoteRepository;
 
 @Service
 public class VoteServiceImpl implements VoteService{
@@ -23,8 +21,6 @@ public class VoteServiceImpl implements VoteService{
 		
 		factories.getPersistenceFactory().getVoteRepository().save(vote);
 	}
-
-
 	//cast it to voteComment when u iterate over it
 	@Override
 	public List<Vote> findCommentVotesByCitizen(Citizen citizen) {

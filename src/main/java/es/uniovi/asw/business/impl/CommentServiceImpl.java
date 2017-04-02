@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import es.uniovi.asw.business.CommentService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Comment;
-import es.uniovi.asw.persistence.repositories.CommentRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService{
@@ -17,14 +16,12 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public void save(Comment comment) {
-		// TODO Auto-generated method stub
 		factories.getPersistenceFactory().getCommentRepository().save(comment);
 		
 	}
 
 	@Override
 	public void delete(Comment comment) {
-		// TODO Auto-generated method stub
 		factories.getPersistenceFactory().getCommentRepository().delete(comment);
 		
 	}

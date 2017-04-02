@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
-import es.uniovi.asw.persistence.repositories.CitizenRepository;
 
 @Service
 public class CitizenServiceImpl implements CitizenService{

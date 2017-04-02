@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import es.uniovi.asw.business.AdministratorService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Administrator;
-import es.uniovi.asw.persistence.model.Citizen;
 
 @Service
 public class AdministratorServiceImpl implements AdministratorService{

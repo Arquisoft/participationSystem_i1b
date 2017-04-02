@@ -9,7 +9,11 @@ import static org.junit.Assert.assertTrue;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +25,8 @@ import es.uniovi.asw.business.AdministratorService;
 import es.uniovi.asw.business.CategoryService;
 import es.uniovi.asw.business.CitizenService;
 import es.uniovi.asw.business.CommentService;
+import es.uniovi.asw.business.ConfigurationService;
+import es.uniovi.asw.business.ForbiddenWordsService;
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.business.VoteService;
@@ -28,6 +34,8 @@ import es.uniovi.asw.persistence.model.Administrator;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
+import es.uniovi.asw.persistence.model.Configuration;
+import es.uniovi.asw.persistence.model.ForbiddenWords;
 import es.uniovi.asw.persistence.model.Proposal;
 import es.uniovi.asw.persistence.model.Vote;
 import es.uniovi.asw.persistence.model.VoteComment;
@@ -209,6 +217,49 @@ public class ModelTest {
 		assertNotNull(serviceprop.findAll());
 		serviceprop.delete(prop1);
 
+	}
+	
+	@Test
+	public void configureTest(){
+		
+		ConfigurationService service= servicesFactory.getConfigurationService();
+		
+		Configuration config1= new Configuration(new HashSet<ForbiddenWords>(), 10);
+		Configuration config2= new Configuration(new HashSet<ForbiddenWords>(), 8);
+		Configuration config3= new Configuration(new HashSet<ForbiddenWords>(), 5);
+		
+		service.save(config1);
+		service.save(config2);
+		service.save(config3);
+		
+		assertEquals(5, service.actualConfiguration().getDeadline());
+		
+		service.delete(config3);
+		assertEquals(8, service.actualConfiguration().getDeadline());
+		
+		ForbiddenWordsService service2= servicesFactory.getForbiddenWordsService();
+
+		ForbiddenWords fw= new ForbiddenWords("beber", config1);
+		ForbiddenWords fw1= new ForbiddenWords("fumar", config1);
+		ForbiddenWords fw2= new ForbiddenWords("droga", config1);
+		ForbiddenWords fw3= new ForbiddenWords("alcohol", config1);
+		ForbiddenWords fw4= new ForbiddenWords("yonki", config1);
+		ForbiddenWords fw5= new ForbiddenWords("perro", config2);
+		
+		service2.save(fw);
+		service2.save(fw1);
+		service2.save(fw2);
+		service2.save(fw3);
+		service2.save(fw4);
+		service2.save(fw5);
+		
+		assertEquals(5, service.getForbiddenWords(config1).size());
+		assertEquals(1, service.getForbiddenWords(config2).size());
+		
+		
+		
+		
+		
 	}
 
 	
