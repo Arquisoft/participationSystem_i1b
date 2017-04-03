@@ -8,8 +8,38 @@
 	<h:body>
 		<center>
 			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
-			<h2>PROPOSALS:</h2>
+			<h:form id="form">
+				<p:panel id="panel" header="Proposal Form"
+					style="margin-bottom:10px;">
+					<h:panelGrid columns="3" cellpadding="5">
 
+						<p:outputLabel for="title" value="Title" />
+						<p:inputText id="title" required="true" label="Title" value="#{newProposalController.title}">
+							<f:validateLength minimum="8" />
+						</p:inputText>
+						<br/>
+
+						<p:outputLabel for="description" value="Description" />
+						<p:inputTextarea id="description" rows="10" cols="50"
+							minQueryLength="4" value="#{newProposalController.description}"/><br/><br/><br/><br/><br/><br/><br/>
+
+						<p:outputLabel for="category" value="Category: " />
+						<p:selectOneMenu id="category"
+							value="#{newProposalController.selectedCategory}"
+							style="width:150px">
+							<f:selectItem itemLabel="Select Category" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{newProposalController.categoriesName}" />
+							
+						</p:selectOneMenu>
+						<br/><br/><br/><br/>
+
+						<p:commandButton value="Submit"
+							action="#{newProposalController.addProposal}"
+							style="margin-top:10px;" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
 		</center>
 	</h:body>
 </f:view>

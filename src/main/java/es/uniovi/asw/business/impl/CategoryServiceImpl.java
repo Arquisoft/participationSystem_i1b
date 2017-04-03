@@ -35,4 +35,5 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<Category> findAll() {
 		return factories.getPersistenceFactory().getCategoryRepository().findAll();
 	}
+
 }

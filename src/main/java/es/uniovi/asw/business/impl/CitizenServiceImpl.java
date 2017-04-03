@@ -37,13 +37,13 @@ public class CitizenServiceImpl implements CitizenService{
 	}
 
 	@Override
-	public boolean checkLogin(String email, String pass) {
+	public Citizen checkLogin(String email, String pass) {
 		Citizen c = null;
 		c = findByEmail(email);
 		if(c != null && c.getPassword().equals(pass)) {
-			return true;
+			return c;
 		}
-		return false;
+		return null;
 	}
 
 }

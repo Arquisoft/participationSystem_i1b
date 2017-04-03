@@ -6,4 +6,5 @@ import es.uniovi.asw.persistence.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 
+
 }

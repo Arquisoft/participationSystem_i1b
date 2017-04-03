@@ -1,19 +1,14 @@
 package es.uniovi.asw;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -186,11 +181,11 @@ public class ModelTest {
 		
 		service5.save(admin);
 		
-		assertTrue(service5.checkLogin(admin.getUsername(), admin.getPassword()));
+		assertNotNull(service5.checkLogin(admin.getUsername(), admin.getPassword()));
 		
 		service5.delete(admin);
 		
-		assertFalse(service5.checkLogin(admin.getUsername(), admin.getPassword()));
+		assertNull(service5.checkLogin(admin.getUsername(), admin.getPassword()));
 		
 	}
 	

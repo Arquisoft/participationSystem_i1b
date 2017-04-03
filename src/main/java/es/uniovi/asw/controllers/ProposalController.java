@@ -1,6 +1,11 @@
 package es.uniovi.asw.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,20 +19,61 @@ import es.uniovi.asw.persistence.model.Proposal;
 @Component("newProposalController")
 @Scope("request")
 public class ProposalController {
-	
+
 	private String title;
 	private String description;
 	private Proposal proposal;
 	@Autowired
 	private Factories factoria;
-	
+
 	private Citizen citizen;
 	private Category selectedCategory;
-	
-	
-	public void addProposal(){
+	private List<Category> categories;
+	private List<String> categoriesName=new ArrayList<String>();
+
+	@PostConstruct
+	public void init() {
+		categories= factoria.getServicesFactory().getCategoryService().findAll();
+		for (Category category : categories) {
+			categoriesName.add(category.getName());
+		}
+	}
+
+
+	public String addProposal(){
+		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 		proposal= new Proposal(title,description,citizen,0,new Date(),selectedCategory);
 		factoria.getServicesFactory().getProposalService().save(proposal);
+		
+		return "success";
+	}
+
+	public String getTitle() {
+		return title;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public Proposal getProposal() {
+		return proposal;
+	}
+
+	public Citizen getCitizen() {
+		return citizen;
+	}
+
+	public Category getSelectedCategory() {
+		return selectedCategory;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+
+	public List<String> getCategoriesName() {
+		return categoriesName;
 	}
 
 }

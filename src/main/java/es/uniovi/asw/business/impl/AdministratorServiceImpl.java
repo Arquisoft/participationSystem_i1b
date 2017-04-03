@@ -14,13 +14,13 @@ public class AdministratorServiceImpl implements AdministratorService{
 	private Factories factories;
 
 	@Override
-	public boolean checkLogin(String user, String pass) {
+	public Administrator checkLogin(String user, String pass) {
 		Administrator a = null;
 		a = factories.getPersistenceFactory().getAdministratorRepository().findByUsername(user);
 		if(a != null && a.getPassword().equals(pass)) {
-			return true;
+			return a;
 		}
-		return false;
+		return null;
 	}
 
 	@Override
