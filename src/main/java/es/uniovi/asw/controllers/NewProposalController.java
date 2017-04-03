@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -42,7 +40,7 @@ public class NewProposalController {
 	}
 
 	public String addProposal(){
-		//selectedCategory= factoria.getPersistenceFactory().getCategoryRepository().findByName("coches");
+		selectedCategory= factoria.getPersistenceFactory().getCategoryRepository().findByName("coches");
 		System.out.println(selectedCategory);
 		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 		

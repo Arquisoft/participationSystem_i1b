@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class Configuration {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToMany(mappedBy="conf")
+	@OneToMany(mappedBy="conf",fetch = FetchType.EAGER)
 	private Set<ForbiddenWords> forbiddenWords= new HashSet<ForbiddenWords>();
 	private int deadline; //tiempo de vida de las propuestas en dias
 	//the categories that are in the table categories are the only existing ones
