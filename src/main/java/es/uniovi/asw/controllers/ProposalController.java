@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,6 +25,7 @@ public class ProposalController {
 	private String title;
 	private String description;
 	private Proposal proposal;
+	private Proposal selectedproposal;
 	@Autowired
 	private Factories factoria;
 
@@ -75,5 +78,18 @@ public class ProposalController {
 	public List<String> getCategoriesName() {
 		return categoriesName;
 	}
+	
+	public List<Proposal> showProposals()
+	{
+		List<Proposal> list = factoria.getServicesFactory().getProposalService().findAll();
+		return list;
+	}
+	
+	public void selectProposal(Proposal pr)
+	{
+		selectedproposal=pr;
+	}
+	
+	
 
 }
