@@ -16,7 +16,7 @@
 						<p:panel header="Forbidden Words">
 							<p:messages id="messages" showDetail="true" autoUpdate="true"
 								closable="true" />
-							<p:dataTable var="word" id=wordsTable value="#{configController.words}">
+							<p:dataTable var="word" id="wordsTable" value="#{configController.words}">
 								<p:column headerText="Current Forbidden Words">
 									<h:outputText value="#{word.getWord()}" />
 								</p:column>

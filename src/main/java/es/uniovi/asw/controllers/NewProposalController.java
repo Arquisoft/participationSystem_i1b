@@ -20,12 +20,12 @@ import es.uniovi.asw.persistence.model.Proposal;
 
 @Component("newProposalController")
 @Scope("request")
-public class ProposalController {
+public class NewProposalController {
 
 	private String title;
 	private String description;
 	private Proposal proposal;
-	private Proposal selectedproposal;
+//	private Proposal selectedproposal;
 	@Autowired
 	private Factories factoria;
 
@@ -79,16 +79,16 @@ public class ProposalController {
 		return categoriesName;
 	}
 	
-	public List<Proposal> showProposals()
-	{
-		List<Proposal> list = factoria.getServicesFactory().getProposalService().findAll();
-		return list;
-	}
-	
-	public void selectProposal(Proposal pr)
-	{
-		selectedproposal=pr;
-	}
+//	public List<Proposal> showProposals()
+//	{
+//		List<Proposal> list = factoria.getServicesFactory().getProposalService().findAll();
+//		return list;
+//	}
+//	
+//	public void selectProposal(Proposal pr)
+//	{
+//		selectedproposal=pr;
+//	}
 	
 	
 

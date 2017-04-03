@@ -42,7 +42,7 @@ public class ConfigurationController {
 		words = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
 	}
 	
-	void addForbiddenWord() {
+	public void addForbiddenWord() {
 		System.out.println("Tamaño antes añadir: "+words.size());
 		ForbiddenWords fb = new ForbiddenWords(addWordInput, conf);
 		conf.addWord(fb);

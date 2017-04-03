@@ -39,7 +39,7 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>login.xhtml</from-view-id>
+		<from-view-id>propuestas.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{newProposalController.addProposal}</from-action>
 			<from-outcome>success</from-outcome>
