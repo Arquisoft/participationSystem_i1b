@@ -5,11 +5,46 @@
 
 	<h:head>
 	</h:head>
-	<h:body>
-		<center>
-			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
-			<h2>PROPOSALS:</h2>
 
-		</center>
+	<h:body>
+		<h:form>
+			<p:dataTable id="tablaListaProposals" var="proposal"
+			value="#{newProposalController.showProposals()}" sortMode="multiple">
+			<f:facet name="header">#{msgs.admin_list}</f:facet>
+			<p:column headerText="Login" sortBy="#{usuario.login}">
+				<h:outputText value="#{usuario.login}" />
+			</p:column>
+			<p:column headerText="E-mail" sortBy="#{usuario.email}">
+				<h:outputText value="#{usuario.email}" />
+			</p:column>
+			<p:column headerText="#{msgs.habilitado}" sortBy="#{usuario.status}">
+				<h:outputText value="#{usuario.status}" />
+			</p:column>
+			<p:column>
+				<p:commandButton id="btn_enable" value="#{msgs.admin_enable}"
+					action="#{admin.enable(usuario.id)}" update="tablaListaUsers">
+				</p:commandButton>
+				<p:commandButton id="btn_disable" value="#{msgs.admin_disable}"
+					action="#{admin.disable(usuario.id)}" update="tablaListaUsers">
+				</p:commandButton>
+				 <p:commandButton id="btn_delete" value="#{msgs.admin_delete_user}"
+					actionListener="#{admin.erase(usuario.id)}"
+					update="tablaListaUsers">
+        			<p:confirm header="#{msgs.admin_confirmation_header}"
+						message="#{msgs.admin_confirmation_msg}" icon="ui-icon-alert" />
+   				 </p:commandButton>
+ 
+    			<p:confirmDialog id="confirmDialog" global="true">
+        			<p:commandButton id="confirmDialogYes" value="Yes"
+						type="button" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" update="tablaListaUsers" />
+        				<p:commandButton id="confirmDialogNo" value="No"
+						type="button" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" update="tablaListaUsers" />
+    				</p:confirmDialog>
+			</p:column>
+		</p:dataTable>
+			
+		</h:form>
 	</h:body>
 </f:view>

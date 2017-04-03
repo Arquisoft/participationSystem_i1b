@@ -1,6 +1,7 @@
 package es.uniovi.asw.controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,6 +19,7 @@ public class ProposalController {
 	private String title;
 	private String description;
 	private Proposal proposal;
+	private Proposal selectedproposal;
 	@Autowired
 	private Factories factoria;
 	
@@ -29,5 +31,18 @@ public class ProposalController {
 		proposal= new Proposal(title,description,citizen,0,new Date(),selectedCategory);
 		factoria.getServicesFactory().getProposalService().save(proposal);
 	}
+	
+	public List<Proposal> showProposals()
+	{
+		List<Proposal> list = factoria.getServicesFactory().getProposalService().findAll();
+		return list;
+	}
+	
+	public void selectProposal(Proposal pr)
+	{
+		selectedproposal=pr;
+	}
+	
+	
 
 }
