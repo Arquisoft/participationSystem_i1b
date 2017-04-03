@@ -25,6 +25,10 @@ public class ConfigurationServiceImpl implements ConfigurationService{
 	@Override
 	public Configuration actualConfiguration() {
 		List<Configuration> confs = factories.getPersistenceFactory().getConfigurationRepository().findAll();
+		if(confs.size() == 0)
+		{
+			return new Configuration();
+		}
 		return confs.get(confs.size()-1);
 	}
 

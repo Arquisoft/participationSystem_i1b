@@ -7,9 +7,26 @@
 	</h:head>
 	<h:body>
 		<center>
-			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
-			<h2>PROPOSALS:</h2>
+			<h1 style="margin-top: 20px">CONFIGURATION</h1>
 
+			<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" />
+				<p:wizard flowListener="#{configController.onFlowProcess}">
+					<p:tab id="words" title="Forbidden Words">
+						<p:panel header="Forbidden Words">
+							<p:messages id="messages" showDetail="true" autoUpdate="true"
+								closable="true" />
+							<p:dataTable var="word" id=wordsTable value="#{configController.words}">
+								<p:column headerText="Current Forbidden Words">
+									<h:outputText value="#{word.getWord()}" />
+								</p:column>
+							</p:dataTable>							
+							<p:inputText value="#{configController.addWordInput}" />
+							<p:commandButton value="Add" action="#{configController.addForbiddenWord}" update="wordsTable" />
+						</p:panel>
+					</p:tab>
+				</p:wizard>
+			</h:form>
 		</center>
 	</h:body>
 </f:view>
