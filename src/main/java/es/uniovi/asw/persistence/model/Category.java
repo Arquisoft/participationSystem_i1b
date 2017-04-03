@@ -45,4 +45,9 @@ public class Category {
 		this.proposals = proposals;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 }

@@ -39,6 +39,7 @@ public class Association {
 	
 	public static class CategorizeProposal { //link for proposalsand categories
 		public static void link(Category cat, Proposal prop) {
+			System.out.println(cat);
 			prop._setCategory(cat);
 			cat._getProposals().add(prop);
 		}

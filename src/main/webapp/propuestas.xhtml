@@ -22,7 +22,7 @@
 
 						<p:outputLabel for="description" value="Description" />
 						<p:inputTextarea id="description" rows="10" cols="50"
-							minQueryLength="4" value="#{newProposalController.description}" />
+							value="#{newProposalController.description}" />
 						<br />
 						<br />
 						<br />
@@ -35,9 +35,8 @@
 						<p:selectOneMenu id="category"
 							value="#{newProposalController.selectedCategory}"
 							style="width:150px">
-							<f:selectItem itemLabel="Select Category" itemValue=""
-								noSelectionOption="true" />
-							<f:selectItems value="#{newProposalController.categoriesName}" />
+							<f:selectItem itemLabel="Select Category" itemValue="" />
+							<f:selectItems value="#{newProposalController.categories}" />
 
 						</p:selectOneMenu>
 						<br />
@@ -45,13 +44,11 @@
 						<br />
 						<br />
 
-						<p:commandButton value="Submit"
-							action="#{newProposalController.addProposal}"
-							style="margin-top:10px;" />
+						<p:commandButton immediate="true" value="Submit"
+							action="#{newProposalController.addProposal}" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
 		</center>
-
 	</h:body>
 </f:view>
