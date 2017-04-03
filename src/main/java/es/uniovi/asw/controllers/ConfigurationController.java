@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,16 @@ import es.uniovi.asw.persistence.model.ForbiddenWords;
 @Scope("session")
 public class ConfigurationController {
 
-	private int timelife;
+	private int lifetime;
 	private Configuration conf;
 	List<Category> oldCategories;
 	List<Category> actualCategories;
 	List<ForbiddenWords> words;
+	private ForbiddenWords selectedWord;
 	
 	//event attributes
 	 private boolean skip;
 	 private String addWordInput;
-	 private String blabla;
 
 	@Autowired
 	private Factories factoria;
@@ -39,21 +41,37 @@ public class ConfigurationController {
 		conf = factoria.getServicesFactory().getConfigurationService().actualConfiguration();
 		oldCategories = factoria.getServicesFactory().getCategoryService().findAll();
 		actualCategories = new ArrayList<>(oldCategories);
-		words = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
+		if(conf != null)
+		{
+			words = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
+			lifetime = conf.getDeadline();
+		}
+		else{
+			words = new ArrayList<ForbiddenWords>();
+			lifetime = 0;
+		}		
 	}
 	
 	public void addForbiddenWord() {
-		System.out.println("Tamaño antes añadir: "+words.size());
 		ForbiddenWords fb = new ForbiddenWords(addWordInput, conf);
-		conf.addWord(fb);
-		words.add(fb);
-		System.out.println("Tamaño despues añadir: "+words.size());
+		if(!words.contains(fb)){
+			//System.out.println("Doesnt contain:"+fb.getWord());
+			conf.addWord(fb);
+			words.add(fb);
+			//System.out.println("adding word");
+		}
+		else{
+			warningForbiddenWord();
+		}
+		addWordInput = "";
 	}
 	
-	void removeForbiddenWord(String word) {
-		ForbiddenWords fb = new ForbiddenWords(word, conf);
-		conf.removeWord(fb);
-		words.remove(fb);
+	public void removeForbiddenWord() {
+		if(selectedWord!=null)
+		{
+			conf.removeWord(selectedWord);
+			words.remove(selectedWord);
+		}
 
 	}
 
@@ -79,6 +97,10 @@ public class ConfigurationController {
         }
     }
 
+	public void warningForbiddenWord() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This word is already forbidden!"));
+    }
+	
 	void saveConfig() {
 		for(Category c : actualCategories){
 			if(!oldCategories.contains(c)) {
@@ -89,12 +111,12 @@ public class ConfigurationController {
 		factoria.getServicesFactory().getConfigurationService().save(conf);
 	}
 
-	public int getTimelife() {
-		return timelife;
+	public int getLifetime() {
+		return lifetime;
 	}
 
-	public void setTimelife(int timelife) {
-		this.timelife = timelife;
+	public void setLifetime(int lifetime) {
+		this.lifetime = lifetime;
 	}
 
 	public Configuration getConf() {
@@ -143,6 +165,14 @@ public class ConfigurationController {
 
 	public void setAddWordInput(String addWordInput) {
 		this.addWordInput = addWordInput;
+	}
+
+	public ForbiddenWords getSelectedWord() {
+		return selectedWord;
+	}
+
+	public void setSelectedWord(ForbiddenWords selectedWord) {
+		this.selectedWord = selectedWord;
 	}
 	
 

@@ -13,17 +13,46 @@
 				<p:growl id="growl" sticky="true" showDetail="true" />
 				<p:wizard flowListener="#{configController.onFlowProcess}">
 					<p:tab id="words" title="Forbidden Words">
+						<p:fieldset legend="Info">
+							<h:outputText value="Configure the words that are not allowed.">
+							</h:outputText>
+						</p:fieldset>
 						<p:panel header="Forbidden Words">
-							<p:messages id="messages" showDetail="true" autoUpdate="true"
-								closable="true" />
-							<p:dataTable var="word" id="wordsTable" value="#{configController.words}">
+							<p:dataTable var="word" id="wordsTable"
+								value="#{configController.words}" selectionMode="single"
+								selection="#{configController.selectedWord}"
+								rowKey="#{word.getWord()}">
 								<p:column headerText="Current Forbidden Words">
 									<h:outputText value="#{word.getWord()}" />
 								</p:column>
-							</p:dataTable>							
-							<p:inputText value="#{configController.addWordInput}" />
-							<p:commandButton value="Add" action="#{configController.addForbiddenWord}" update="wordsTable" />
+							</p:dataTable>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-trash"
+									action="#{configController.removeForbiddenWord}"
+									update="wordsTable" />
+								<p:inputText id="inputWord"
+									value="#{configController.addWordInput}" />
+								<p:commandButton value="Add"
+									action="#{configController.addForbiddenWord}"
+									update="wordsTable, inputWord" />
+								<p:messages id="messageWord" showDetail="true" autoUpdate="true"
+									closable="true" />
+							</f:facet>
 						</p:panel>
+					</p:tab>
+
+					<p:tab id="lifetime" title="Proposals lifetime">
+						<p:fieldset legend="Info">
+							<h:outputText
+								value="Set the maximum interval lifetime in days for a proposal to live.">
+							</h:outputText>
+							<br />
+						</p:fieldset>
+						<h:outputText value="LIFETIME:">
+						</h:outputText>
+						<p:spinner id="lifetimeSpinner"
+							value="#{configController.lifetime}" min="0" />
 					</p:tab>
 				</p:wizard>
 			</h:form>
