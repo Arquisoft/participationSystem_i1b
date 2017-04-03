@@ -16,7 +16,6 @@
 						<p:outputLabel for="title" value="Title" />
 						<p:inputText id="title" required="true" label="Title"
 							value="#{newProposalController.title}">
-							<f:validateLength minimum="8" />
 						</p:inputText>
 						<br />
 
@@ -35,7 +34,8 @@
 						<p:selectOneMenu id="category"
 							value="#{newProposalController.selectedCategory}"
 							style="width:150px">
-							<f:selectItem itemLabel="Select Category" itemValue="" />
+							
+							<f:selectItem itemLabel="Select Category"  />
 							<f:selectItems value="#{newProposalController.categories}" />
 
 						</p:selectOneMenu>
@@ -44,7 +44,7 @@
 						<br />
 						<br />
 
-						<p:commandButton immediate="true" value="Submit"
+						<p:commandButton value="Submit" immediate="true"
 							action="#{newProposalController.addProposal}" />
 					</h:panelGrid>
 				</p:panel>

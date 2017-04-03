@@ -19,7 +19,7 @@ public class MainController {
     @RequestMapping("/")
     public String landing(Model model) {
         //model.addAttribute("message", new Message());
-        return "login";
+        return "redirect:/login.xhtml";
     }
     
     @RequestMapping("/send")

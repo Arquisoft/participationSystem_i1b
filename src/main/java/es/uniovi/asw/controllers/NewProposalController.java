@@ -39,14 +39,13 @@ public class NewProposalController {
 	@PostConstruct
 	public void init() {
 		categories= factoria.getServicesFactory().getCategoryService().findAll();
-		for (Category category : categories) {
-			categoriesName.add(category.getName());
-		}
 	}
 
 	public String addProposal(){
+		//selectedCategory= factoria.getPersistenceFactory().getCategoryRepository().findByName("coches");
 		System.out.println(selectedCategory);
 		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+		
 		proposal= new Proposal(title,description,citizen,0,new Date(),selectedCategory);
 		factoria.getServicesFactory().getProposalService().save(proposal);
 		
