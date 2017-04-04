@@ -41,7 +41,8 @@ public class NewProposalController {
 
 	public String addProposal(){
 		selectedCategory= factoria.getPersistenceFactory().getCategoryRepository().findByName("coches");
-		System.out.println(selectedCategory);
+		System.out.println("Category array count:"+categories.size());
+		System.out.println("Category:"+selectedCategory);
 		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 		
 		proposal= new Proposal(title,description,citizen,0,new Date(),selectedCategory);

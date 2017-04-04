@@ -36,7 +36,7 @@ public class ProposaListController {
 		list= factoria.getServicesFactory().getProposalService().findAll();
 	}
 
-
+	
 
 	public String getTitle() {
 		return title;
@@ -103,6 +103,10 @@ public class ProposaListController {
 		selectedProposal=pr;
 		title=selectedProposal.getTitle();
 		description=selectedProposal.getDescription();
+	}
+	
+	public String goToAddView(){
+		return "addView";
 	}
 	
 	

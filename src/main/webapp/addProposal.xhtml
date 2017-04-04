@@ -31,11 +31,10 @@
 						<br />
 
 						<p:outputLabel for="category" value="Category: " />
-						<p:selectOneMenu id="category"
-							value="#{newProposalController.selectedCategory}"
+						<p:selectOneMenu id="category" value="#{newProposalController.selectedCategory}"
 							style="width:150px">
 							
-							<f:selectItem itemLabel="Select Category"  />
+							<f:selectItem itemLabel="Select Category"  itemValue=""/>
 							<f:selectItems value="#{newProposalController.categories}" />
 
 						</p:selectOneMenu>

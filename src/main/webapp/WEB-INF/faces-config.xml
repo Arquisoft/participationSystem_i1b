@@ -30,6 +30,15 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<from-view-id>proposalList.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.goToAddView}</from-action>
+			<from-outcome>addView</from-outcome>
+			<to-view-id>/addProposal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	
 	<navigation-rule>
 		<from-view-id>addProposal.xhtml</from-view-id>
