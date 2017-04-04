@@ -27,11 +27,15 @@
 						<br />
 						<br />
 						<br />
-						<h:outputLabel for="category" value="Category:"/>
-						<h:selectOneMenu value = "#{addProposal.categoryName}" id="category">
-						<f:selectItems value="#{addProposal.categoriesName}" />
+						<h:outputLabel for="category" value="Category:" />
+						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
+							<f:selectItems value="#{addProposal.categoriesName}" />
 						</h:selectOneMenu>
 						<h:commandButton value="Save" action="#{addProposal.addProposal}" />
+						<br />
+						<h:outputLabel value="Category Name:   "></h:outputLabel>
+						<p:inputText value="#{addCategoryController.name}" />
+						<h:commandButton value="Save" action="#{addCategoryController.addCategory}" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

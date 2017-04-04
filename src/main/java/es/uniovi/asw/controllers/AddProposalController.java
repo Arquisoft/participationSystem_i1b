@@ -39,13 +39,10 @@ public class AddProposalController {
 		for (Category category : categories) {
 			categoriesName.add(category.getName());
 		}
-		
 	}
 	
 	public String addProposal(){
 		category= factoria.getPersistenceFactory().getCategoryRepository().findByName(categoryName);
-//		System.out.println("Category array count:"+categories.size());
-//		System.out.println("Category:"+selectedCategory);
 		proposal= new Proposal(title,description,citizen,0,new Date(),category);
 		factoria.getServicesFactory().getProposalService().save(proposal);
 		
