@@ -17,6 +17,7 @@ Use the script.bat in the main folder, but before that you need the kafka folder
 
 - Ignacio Fernández (@scracho)
 - Javier Muhlach (@muhlach)
+- Diego Pérez (@diegoprzl)
 - Herminio García González (@herminiogg)
 - Jose Emilio Labra Gayo (@labra)
 
