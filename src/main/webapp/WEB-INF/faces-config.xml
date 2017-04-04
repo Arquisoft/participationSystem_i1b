@@ -43,7 +43,7 @@
 	<navigation-rule>
 		<from-view-id>addProposal.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{newProposalController.addProposal}</from-action>
+			<from-action>#{addProposal.addProposal}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/proposalList.xhtml</to-view-id>
 			<redirect />

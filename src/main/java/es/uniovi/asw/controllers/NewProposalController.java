@@ -23,7 +23,6 @@ public class NewProposalController {
 	private String title;
 	private String description;
 	private Proposal proposal;
-//	private Proposal selectedproposal;
 	@Autowired
 	private Factories factoria;
 
@@ -40,6 +39,7 @@ public class NewProposalController {
 	}
 
 	public String addProposal(){
+		System.out.println(title+description);
 		selectedCategory= factoria.getPersistenceFactory().getCategoryRepository().findByName("coches");
 		System.out.println("Category array count:"+categories.size());
 		System.out.println("Category:"+selectedCategory);

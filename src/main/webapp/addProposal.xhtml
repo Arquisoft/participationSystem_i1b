@@ -8,43 +8,30 @@
 	<h:body>
 		<center>
 			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
-			<h:form id="form">
+			<h:form style="margin-top: 50px">
 				<p:panel id="panel" header="Proposal Form"
-					style="margin-bottom:10px;">
+					style="margin-bottom:10px; width:50%">
 					<h:panelGrid columns="3" cellpadding="5">
+						<h:outputLabel value="Title:   "></h:outputLabel>
+						<p:inputText value="#{addProposal.title}" />
+						<br />
+						<br />
+						<br />
+						<br />
+						<h:outputLabel value="Description:    "></h:outputLabel>
+						<p:inputTextarea rows="5" cols="30" counter="display"
+							value="#{addProposal.description}" maxlength="40"
+							counterTemplate="{0} characters remaining." autoResize="false" />
 
-						<p:outputLabel for="title" value="Title" />
-						<p:inputText id="title" required="true" label="Title"
-							value="#{newProposalController.title}">
-						</p:inputText>
-						<br />
-
-						<p:outputLabel for="description" value="Description" />
-						<p:inputTextarea id="description" rows="10" cols="50"
-							value="#{newProposalController.description}" />
+						<h:outputText id="display" />
 						<br />
 						<br />
 						<br />
-						<br />
-						<br />
-						<br />
-						<br />
-
-						<p:outputLabel for="category" value="Category: " />
-						<p:selectOneMenu id="category" value="#{newProposalController.selectedCategory}"
-							style="width:150px">
-							
-							<f:selectItem itemLabel="Select Category"  itemValue=""/>
-							<f:selectItems value="#{newProposalController.categories}" />
-
-						</p:selectOneMenu>
-						<br />
-						<br />
-						<br />
-						<br />
-
-						<p:commandButton value="Submit" immediate="true"
-							action="#{newProposalController.addProposal}" />
+						<h:outputLabel for="category" value="Category:"/>
+						<h:selectOneMenu value = "#{addProposal.categoryName}" id="category">
+						<f:selectItems value="#{addProposal.categoriesName}" />
+						</h:selectOneMenu>
+						<h:commandButton value="Save" action="#{addProposal.addProposal}" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>
