@@ -27,11 +27,13 @@ public class ConfigurationController {
 	List<Category> oldCategories;
 	List<Category> actualCategories;
 	List<ForbiddenWords> words;
-	private ForbiddenWords selectedWord;
-	
+
 	//event attributes
-	 private boolean skip;
-	 private String addWordInput;
+	private boolean skip;
+	private ForbiddenWords selectedWord;
+	private Category selectedCategory;
+	private String addWordInput;
+	private String addCategoryInput;
 
 	@Autowired
 	private Factories factoria;
@@ -51,7 +53,7 @@ public class ConfigurationController {
 			lifetime = 0;
 		}		
 	}
-	
+
 	public void addForbiddenWord() {
 		ForbiddenWords fb = new ForbiddenWords(addWordInput, conf);
 		if(!words.contains(fb)){
@@ -65,7 +67,7 @@ public class ConfigurationController {
 		}
 		addWordInput = "";
 	}
-	
+
 	public void removeForbiddenWord() {
 		if(selectedWord!=null)
 		{
@@ -75,39 +77,56 @@ public class ConfigurationController {
 
 	}
 
-	void addProvisionalCategory(String cat){
-		Category c = new Category(cat);
-		actualCategories.add(c);
+	public void addProvisionalCategory(){
+		Category c = new Category(addCategoryInput);
+		if(!actualCategories.contains(c)){
+			actualCategories.add(c);
+			System.out.println("Cat:"+c.getName());
+		}
+		else
+		{
+			warningCategory();
+		}
+		addCategoryInput = "";
 	}
 
-	void removeProvisionalCategory(String cat){
-		Category c = new Category(cat);
-		if(actualCategories.contains(c)){
-			actualCategories.remove(c);
+	public void removeProvisionalCategory(){
+		if(selectedCategory!=null)
+		{
+			actualCategories.remove(selectedCategory);
+			factoria.getServicesFactory().getCategoryService().delete(selectedCategory);
 		}
 	}
-	
+
 	public String onFlowProcess(FlowEvent event) {
-        if(skip) {
-            skip = false;   //reset in case user goes back
-            return "confirm";
-        }
-        else {
-            return event.getNewStep();
-        }
-    }
+		if(skip) {
+			skip = false;   //reset in case user goes back
+			return "confirm";
+		}
+		else {
+			return event.getNewStep();
+		}
+	}
 
 	public void warningForbiddenWord() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This word is already forbidden!"));
-    }
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This word is already forbidden!"));
+	}
 	
-	void saveConfig() {
+	private void warningCategory() {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This category already exists!"));
+				
+	}
+
+	public void saveConfig() {
 		for(Category c : actualCategories){
 			if(!oldCategories.contains(c)) {
 				factoria.getServicesFactory().getCategoryService().save(c);
 			}
 		}
-
+		for(ForbiddenWords word : words) {
+			factoria.getServicesFactory().getForbiddenWordsService().save(word);;
+		}
+		conf.setDeadline(lifetime);
 		factoria.getServicesFactory().getConfigurationService().save(conf);
 	}
 
@@ -174,6 +193,24 @@ public class ConfigurationController {
 	public void setSelectedWord(ForbiddenWords selectedWord) {
 		this.selectedWord = selectedWord;
 	}
+
+	public Category getSelectedCategory() {
+		return selectedCategory;
+	}
+
+	public void setSelectedCategory(Category selectedCategory) {
+		this.selectedCategory = selectedCategory;
+	}
+
+	public String getAddCategoryInput() {
+		return addCategoryInput;
+	}
+
+	public void setAddCategoryInput(String addCategoryInput) {
+		this.addCategoryInput = addCategoryInput;
+	}
 	
+	
+
 
 }

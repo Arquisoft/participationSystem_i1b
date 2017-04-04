@@ -49,12 +49,45 @@
 							</h:outputText>
 							<br />
 						</p:fieldset>
-						<h:outputText value="LIFETIME:">
-						</h:outputText>
-						<p:spinner id="lifetimeSpinner"
-							value="#{configController.lifetime}" min="0" />
+						<p:panel header="LIFETIME">
+							<h:outputText value="LIFETIME:  ">
+							</h:outputText>
+							<p:spinner id="lifetimeSpinner"
+								value="#{configController.lifetime}" min="0" />
+						</p:panel>
+					</p:tab>
+					
+					<p:tab id="categories" title="Categories">
+						<p:fieldset legend="Info">
+							<h:outputText value="Configure categories in which the proposals will be organized">
+							</h:outputText>
+						</p:fieldset>
+						<p:panel header="Categories">
+							<p:dataTable var="cat" id="catTable"
+								value="#{configController.actualCategories}" selectionMode="single"
+								selection="#{configController.selectedCategory}"
+								rowKey="#{cat.getName()}">
+								<p:column headerText="Current Categories">
+									<h:outputText value="#{cat.getName()}" />
+								</p:column>
+							</p:dataTable>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-trash"
+									action="#{configController.removeProvisionalCategory}"
+									update="catTable" />
+								<p:inputText id="inputCat"
+									value="#{configController.addCategoryInput}" />
+								<p:commandButton value="Add"
+									action="#{configController.addProvisionalCategory}"
+									update="catTable, inputCat" />
+								<p:messages id="messageCat" showDetail="true" autoUpdate="true"
+									closable="true" />
+							</f:facet>
+						</p:panel>
 					</p:tab>
 				</p:wizard>
+				<p:commandButton value="CONFIRM"	action="#{configController.saveConfig}"/>
 			</h:form>
 		</center>
 	</h:body>
