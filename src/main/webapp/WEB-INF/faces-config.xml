@@ -14,8 +14,8 @@
 		<from-view-id>login.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginController.logIn}</from-action>
-			<from-outcome>conf</from-outcome>
-			<to-view-id>/configuration.xhtml</to-view-id>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/proposalListAdmin.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -25,25 +25,18 @@
 		<navigation-case>
 			<from-action>#{loginController.logIn}</from-action>
 			<from-outcome>citizen</from-outcome>
-			<to-view-id>/propuestas.xhtml</to-view-id>
+			<to-view-id>/proposalList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	
 	<navigation-rule>
-		<from-view-id>login.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{loginController.logIn}</from-action>
-			<from-outcome>conf</from-outcome>
-			<to-view-id>/configuration.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>propuestas.xhtml</from-view-id>
+		<from-view-id>addProposal.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{newProposalController.addProposal}</from-action>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/mainView.xhtml</to-view-id>
+			<to-view-id>/proposalList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

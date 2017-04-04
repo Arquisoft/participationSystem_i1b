@@ -26,7 +26,7 @@ public class LoginController {
 //		factoria.getServicesFactory().getCitizenService().save(nacho);
 		Citizen cit=factoria.getServicesFactory().getCitizenService().checkLogin(user, pass);
 		if(factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass)!=null) {
-			return "conf";
+			return "admin";
 		}
 		else if(cit!=null) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", cit);
