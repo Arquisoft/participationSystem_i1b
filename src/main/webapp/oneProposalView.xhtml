@@ -6,33 +6,35 @@
 	</h:head>
 	<h:body>
 		<center>
-			<p:fieldset legend="#{ProposalListController.title}"
-				style="margin:50px 50px 50px 50px; text-align: left; width:50%">
-				<h:panelGrid columns="2" cellpadding="5">
-					<p:panel style="text-align: center">
-						<h:outputText value="#{ProposalListController.description}"
-							style="margin-right:50px" />
-					</p:panel>
-					<br />
-					<h:outputText id="counter" value="#{ProposalListController.score}"
-						style="margin-left:10px" />
-					<br />
-					<p:commandButton icon="ui-icon-circle-arrow-n"
-						action="#{ProposalListController.voteProposal()}" 
-						update="counter" />
-				</h:panelGrid>
-			</p:fieldset>
-			<p:panel style="float: left; text-align:left; margin-left:320px;  ">
-				<p:accordionPanel value="#{ProposalListController.showComments()}"
-					var="comment" style="float:left; margin-bottom:20px; "
-					multiple="true">
-					<p:tab title="#{comment.getCitizen()}">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:outputText value="#{comment.getText()}" />
-						</h:panelGrid>
-					</p:tab>
-				</p:accordionPanel>
-			</p:panel>
+			<h:form>
+				<p:fieldset legend="#{ProposalListController.title}"
+					style="margin:50px 50px 50px 50px; text-align: left; width:50%">
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:panel style="text-align: center">
+							<h:outputText value="#{ProposalListController.description}"
+								style="margin-right:50px" />
+						</p:panel>
+						<br />
+						<h:outputText id="counter" value="#{ProposalListController.score}"
+							style="margin-left:10px" />
+						<br />
+						<p:commandButton icon="ui-icon-circle-arrow-n"
+							action="#{ProposalListController.voteProposal}" update="counter"
+							immediate="true" />
+					</h:panelGrid>
+				</p:fieldset>
+				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
+					<p:accordionPanel value="#{ProposalListController.showComments()}"
+						var="comment" style="float:left; margin-bottom:20px; "
+						multiple="true">
+						<p:tab title="#{comment.getCitizen()}">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="#{comment.getText()}" />
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+				</p:panel>
+			</h:form>
 		</center>
 	</h:body>
 </f:view>

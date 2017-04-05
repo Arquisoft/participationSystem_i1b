@@ -34,7 +34,7 @@ public class Proposal implements Serializable{
 	private Date creationDate;
 	@OneToMany(mappedBy="proposal")
 	private List<Comment> comments= new ArrayList<Comment>();
-	@OneToMany(mappedBy="proposal")
+	@OneToMany(mappedBy="proposal", fetch=FetchType.EAGER)
 	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
 	@ManyToOne
 	private Category category;
