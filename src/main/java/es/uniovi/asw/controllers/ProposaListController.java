@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
+import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
 
 @Component("ProposalListController")
@@ -24,6 +25,8 @@ public class ProposaListController {
 	private Citizen citizen;
 	private List<Proposal> list;
 	private Proposal selectedProposal;
+	private List<Comment> comments;
+	private int score;
 	
 
 
@@ -99,6 +102,7 @@ public class ProposaListController {
 		selectedProposal=pr;
 		title=selectedProposal.getTitle();
 		description=selectedProposal.getDescription();
+		score=selectedProposal.getScore();
 		
 		return "goToView";
 	}
@@ -106,7 +110,34 @@ public class ProposaListController {
 	public String goToAddView(){
 		return "addView";
 	}
-	
-	
+	public List<Comment> showComments()
+	{
+		 comments = factoria.getServicesFactory().getProposalService().findByProposal(selectedProposal);
+		return comments;
+	}
 
+
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+
+
+	public int getScore() {
+		return score;
+	}
+
+
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 }

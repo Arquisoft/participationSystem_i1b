@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,7 @@ public class Comment {
 	private Citizen citizen;
 	private Date creationDate;
 	private int score;
-	@OneToMany(mappedBy="comment")
+	@OneToMany(mappedBy="comment", fetch = FetchType.EAGER)
 	private List<VoteComment> votes= new ArrayList<VoteComment>();
 	
 	public Comment(){}
@@ -96,6 +97,11 @@ public class Comment {
 
 	public List<VoteComment> _getVotes() {
 		return votes;
+	}
+
+	@Override
+	public String toString() {
+		return text;
 	}
 	
 }
