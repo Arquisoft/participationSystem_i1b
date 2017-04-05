@@ -2,7 +2,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
 	<h:head>
 	</h:head>
 	<h:body>
@@ -13,10 +12,13 @@
 					<p:panel style="text-align: center">
 						<h:outputText value="#{ProposalListController.description}"
 							style="margin-right:50px" />
-					</p:panel><br/>
-					<h:outputText id="counter" value="#{ProposalListController.score}" style="margin-left:10px"/><br/>
-					<p:commandButton value="I like it"
-						actionListener="#{globalCounterView.increment}" />
+					</p:panel>
+					<br />
+					<h:outputText id="counter" value="#{ProposalListController.score}"
+						style="margin-left:10px" />
+					<br />
+					<p:commandButton id="btn_add_Comment" icon="ui-icon-circle-arrow-n"
+						action="#{ProposalListController.voteProposal(proposal)}"></p:commandButton>
 				</h:panelGrid>
 			</p:fieldset>
 			<p:panel style="float: left; text-align:left; margin-left:320px;  ">
