@@ -105,6 +105,7 @@ public class ProposaListController {
 	}
 	
 	public String goToListView(){
+		System.out.println("back");
 		return "listView";
 	}
 	
