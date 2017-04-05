@@ -1,6 +1,6 @@
 package es.uniovi.asw.controllers;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +31,7 @@ public class ProposaListController {
 	private Proposal selectedProposal;
 	private List<Comment> comments;
 	private int score;
+	private String textComment;
 
 	@PostConstruct
 	public void init() {
@@ -139,6 +140,12 @@ public class ProposaListController {
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
 		}
 	}
+	public void addComment(){
+		
+		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
+		factoria.getServicesFactory().getCommentService().save(coment);
+		
+	}
 
 
 	public List<Comment> getComments() {
@@ -155,5 +162,15 @@ public class ProposaListController {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+
+	public String getTextComment() {
+		return textComment;
+	}
+
+
+	public void setTextComment(String textComment) {
+		this.textComment = textComment;
 	}
 }
