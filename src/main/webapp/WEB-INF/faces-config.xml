@@ -39,8 +39,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{addProposal.showProposal}</from-action>
-			<from-outcome>success</from-outcome>
+			<from-action>#{ProposalListController.selectProposal(proposal)}</from-action>
+			<from-outcome>goToView</from-outcome>
 			<to-view-id>/oneProposalView.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>

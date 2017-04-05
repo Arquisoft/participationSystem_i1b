@@ -1,18 +1,14 @@
 package es.uniovi.asw.controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import es.uniovi.asw.infraestructure.Factories;
-import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Proposal;
 
@@ -98,11 +94,13 @@ public class ProposaListController {
 		return list;
 	}
 	
-	public void selectProposal(Proposal pr)
+	public String selectProposal(Proposal pr)
 	{
 		selectedProposal=pr;
 		title=selectedProposal.getTitle();
 		description=selectedProposal.getDescription();
+		
+		return "goToView";
 	}
 	
 	public String goToAddView(){

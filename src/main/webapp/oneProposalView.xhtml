@@ -7,14 +7,26 @@
 	</h:head>
 	<h:body>
 		<center>
-			<p:panel id="oneProposal" header="" footer="Movie Details"
-				style="margin-bottom:20px">
-				<h:panelGrid columns="2" cellpadding="10">
-					<p:graphicImage name="https://www.projectsmart.co.uk/img/proposal.png" />
-					<h:outputText value="The story begins as Don Vito Corleone..." />
+			<p:growl id="msgs" showDetail="true" />
+			<p:fieldset legend="#{ProposalListController.title}"
+				style="margin:50px 50px 50px 50px; text-align: left">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="#{ProposalListController.description}" />
+					<p:graphicImage value="/images/proposal.jpeg" title="PROPOSAL"
+						width="300" height="300" style="margin-right:20px; float: right" />
+				
+					
+					<p:fieldset legend="Comments" toggleable="true" toggleSpeed="500">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputText
+								value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream.
+                          In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy,
+                          killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows."></h:outputText>
+						</h:panelGrid>
+					</p:fieldset>
+					
 				</h:panelGrid>
-			</p:panel>
-
+			</p:fieldset>
 		</center>
 	</h:body>
 </f:view>

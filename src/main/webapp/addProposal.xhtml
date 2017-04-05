@@ -23,10 +23,21 @@
 							counterTemplate="{0} characters remaining." autoResize="false" 
 							required="true" requiredMessage="The description cannot be empty"/>
 						<h:outputText id="display" />
+<<<<<<< HEAD
 						<h:outputLabel for="category" value="Category:" />
 						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
 							<f:selectItems value="#{addProposal.categoriesName}" />
 						</h:selectOneMenu>
+=======
+						<br />
+						<br />
+						<h:outputLabel for="category" value="Category:" style="padding-left:-50px"/>
+						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
+							<f:selectItems value="#{addProposal.categoriesName}" />
+						</h:selectOneMenu>
+						<h:commandButton value="Save" action="#{addProposal.addProposal}" />
+						<br />
+>>>>>>> 2d2af787c077533a74c6b9cb654876334e1275b3
 					</h:panelGrid>
 					<p:messages id="message" showDetail="true" autoUpdate="true"
 						closable="true" />
