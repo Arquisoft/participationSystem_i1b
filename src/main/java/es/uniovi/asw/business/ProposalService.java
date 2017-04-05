@@ -10,4 +10,7 @@ public interface ProposalService {
 	void delete(Proposal proposal);
 	List<Proposal> findAll();
 	List<Comment> findByProposal(Proposal selectedProposal);
+
+	boolean alreadyExists(Proposal proposal);
+
 }

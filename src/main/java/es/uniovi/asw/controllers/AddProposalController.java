@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,14 @@ import org.springframework.stereotype.Component;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
+import es.uniovi.asw.persistence.model.Configuration;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 import es.uniovi.asw.persistence.model.Proposal;
 
 @Component("addProposal")
 @Scope("request")
 public class AddProposalController {
-	
+
 	private String title;
 	private String description;
 	private Proposal proposal;
@@ -30,11 +32,10 @@ public class AddProposalController {
 	private List<Category> categories;
 	private List<String> categoriesName=new ArrayList<String>();
 	private List<ForbiddenWords> forbiddenWords;
-	private List<String> forbiddenWordsName=new ArrayList<String>();
-	
+
 	@Autowired
 	private Factories factoria;
-	
+
 	@PostConstruct
 	public void init() {
 		categories= factoria.getServicesFactory().getCategoryService().findAll();
@@ -42,22 +43,72 @@ public class AddProposalController {
 		for (Category category : categories) {
 			categoriesName.add(category.getName());
 		}
+		Configuration conf = factoria.getServicesFactory().getConfigurationService().actualConfiguration();
+		forbiddenWords = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
+		title = "";
+		description = "";
 	}
 	
+	public String cancel(){
+		return "cancel";
+	}
+
 	public String addProposal(){
-		category= factoria.getPersistenceFactory().getCategoryRepository().findByName(categoryName);
-		proposal= new Proposal(title,description,citizen,0,new Date(),category);
-		factoria.getServicesFactory().getProposalService().save(proposal);
-		
-		return "success";
-	}
-	public void checkForbiddenWord(){
-		forbiddenWords=factoria.getServicesFactory().getForbiddenWordsService().findAll();
-		for (ForbiddenWords fw : forbiddenWords) {
-			forbiddenWordsName.add(fw.getWord());
+		if(checkTitle() && checkDescription()){
+			category= factoria.getPersistenceFactory().getCategoryRepository().findByName(categoryName);
+			proposal= new Proposal(title,description,citizen,0,new Date(),category);
+			if(!factoria.getServicesFactory().getProposalService().alreadyExists(proposal))
+			{
+				factoria.getServicesFactory().getProposalService().save(proposal);
+				return "success";
+			}
+			else {
+				errorProposalAlreadyExists();
+			}			
 		}
+		return "";
+	}
+
+	private boolean checkDescription() {
+		if(description.length()>0)
+		{
+			for (ForbiddenWords fw : forbiddenWords) {
+				if(description.contains(fw.getWord()))
+				{
+					errorForbiddenWord(fw);
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+
+	}
+
+	private boolean checkTitle(){
+		//System.out.println("checkingTitle");
+		if(title.length()>0)
+		{
+			for (ForbiddenWords fw : forbiddenWords) {
+				if(title.contains(fw.getWord()))
+				{
+					errorForbiddenWord(fw);
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private void errorForbiddenWord(ForbiddenWords word) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You are using the forbidden word "+word.getWord().toUpperCase()+"!"));
 	}
 	
+	private void errorProposalAlreadyExists() {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The proposal you are trying to create already exists"));
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -130,15 +181,6 @@ public class AddProposalController {
 		this.forbiddenWords = forbiddenWords;
 	}
 
-	public List<String> getForbiddenWordsName() {
-		return forbiddenWordsName;
-	}
 
-	public void setForbiddenWordsName(List<String> forbiddenWordsName) {
-		this.forbiddenWordsName = forbiddenWordsName;
-	}
-
-
-	
 
 }
