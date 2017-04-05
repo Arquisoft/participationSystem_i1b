@@ -29,6 +29,17 @@ public class ProposalServiceImpl implements ProposalService{
 	public List<Proposal> findAll() {
 		return factories.getPersistenceFactory().getProposalRepository().findAll();
 	}
+	
+	@Override
+	public boolean alreadyExists(Proposal proposal)
+	{
+		Proposal prop = factories.getPersistenceFactory().getProposalRepository().findByTitle(proposal.getTitle());
+		if(prop != null)
+		{
+			return true;
+		}
+		return false;
+	}
 
 
 }

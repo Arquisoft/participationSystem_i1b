@@ -55,5 +55,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>addProposal.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{addProposal.cancel}</from-action>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

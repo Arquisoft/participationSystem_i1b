@@ -12,31 +12,28 @@
 				<p:panel id="panel" header="Proposal Form"
 					style="margin-bottom:10px; width:50%">
 					<h:panelGrid columns="3" cellpadding="5">
-						<h:outputLabel value="Title:   "></h:outputLabel>
-						<p:inputText value="#{addProposal.title}" />
-						<br />
-						<br />
+						<h:outputLabel value="Title:"></h:outputLabel>
+						<p:inputText value="#{addProposal.title}" required="true" requiredMessage="The title cannot be empty">
+						</p:inputText>
 						<br />
 						<br />
 						<h:outputLabel value="Description:    "></h:outputLabel>
 						<p:inputTextarea rows="5" cols="30" counter="display"
-							value="#{addProposal.description}" maxlength="40"
-							counterTemplate="{0} characters remaining." autoResize="false" />
-
+							value="#{addProposal.description}" maxlength="200"
+							counterTemplate="{0} characters remaining." autoResize="false" 
+							required="true" requiredMessage="The description cannot be empty"/>
 						<h:outputText id="display" />
-						<br />
-						<br />
-						<br />
 						<h:outputLabel for="category" value="Category:" />
 						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
 							<f:selectItems value="#{addProposal.categoriesName}" />
 						</h:selectOneMenu>
-						<h:commandButton value="Save" action="#{addProposal.addProposal}" />
-						<br />
-						<h:outputLabel value="Category Name:   "></h:outputLabel>
-						<p:inputText value="#{addCategoryController.name}" />
-						<h:commandButton value="Save" action="#{addCategoryController.addCategory}" />
 					</h:panelGrid>
+					<p:messages id="message" showDetail="true" autoUpdate="true"
+						closable="true" />
+						<h:commandButton value="Cancel" action="#{addProposal.cancel}" />
+					<h:commandButton value="Save" action="#{addProposal.addProposal}" />
+					<br />
+					
 				</p:panel>
 			</h:form>
 		</center>

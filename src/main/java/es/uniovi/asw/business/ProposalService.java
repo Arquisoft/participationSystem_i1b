@@ -8,4 +8,5 @@ public interface ProposalService {
 	void save(Proposal proposal);
 	void delete(Proposal proposal);
 	List<Proposal> findAll();
+	boolean alreadyExists(Proposal proposal);
 }
