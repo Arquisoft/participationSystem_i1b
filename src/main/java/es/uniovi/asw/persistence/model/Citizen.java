@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.annotation.Transient;
 
 @Entity
@@ -36,6 +38,7 @@ public class Citizen {
 	@OneToMany(mappedBy="citizen")
 	private List<Proposal> proposals= new ArrayList<Proposal>();
 	@OneToMany(mappedBy="citizen")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Vote> votes= new ArrayList<Vote>();
 	@OneToMany(mappedBy="citizen")
 	private List<Comment> comments= new ArrayList<Comment>();

@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table (name="Proposal")
 public class Proposal implements Serializable{
@@ -34,8 +37,10 @@ public class Proposal implements Serializable{
 	private Date creationDate;
 	@OneToMany(mappedBy="proposal")
 	private List<Comment> comments= new ArrayList<Comment>();
-	@OneToMany(mappedBy="proposal", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="proposal")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
+
 	@ManyToOne
 	private Category category;
 
@@ -112,6 +117,24 @@ public class Proposal implements Serializable{
 		return votes;
 	}
 
+	public void setVotes(List<VoteProposal> votes) {
+		if(votes.isEmpty())
+		{
+			votes = new ArrayList<VoteProposal>();
+		}
+		else{
+			for(VoteProposal vote: votes)
+			{
+				Association.Voting.linkProposal(citizen, vote, this);		
+			}
+		}
+	}
+
+	void _setVotes(List<VoteProposal> votes)
+	{
+		this.votes = votes;
+	}
+
 	void _setCitizen(Citizen citizen2) {
 		this.citizen=citizen2;
 
@@ -119,7 +142,7 @@ public class Proposal implements Serializable{
 	public void setCitizen(Citizen citizen) {
 		Association.Propose.link(citizen, this);
 	}
-	
+
 	public Category getCategory() {
 		return category;
 	}
@@ -127,7 +150,7 @@ public class Proposal implements Serializable{
 	public void setCategory(Category category) {
 		Association.CategorizeProposal.link(category, this);
 	}
-	
+
 	void _setCategory(Category category){
 		this.category = category;
 	}

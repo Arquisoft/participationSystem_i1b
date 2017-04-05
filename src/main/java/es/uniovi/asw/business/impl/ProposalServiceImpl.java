@@ -43,10 +43,16 @@ public class ProposalServiceImpl implements ProposalService{
 	}
 
 	@Override
-	public List<Comment> findByProposal(Proposal selectedProposal) {
+	public List<Comment> findCommentsByProposal(Proposal selectedProposal) {
 		return factories.getPersistenceFactory().getCommentRepository().findByProposal(selectedProposal);
 
 	}
+	
+	@Override
+	public Proposal findByTitle(String title){
+		return factories.getPersistenceFactory().getProposalRepository().findByTitle(title);
+	}
+
 
 
 }

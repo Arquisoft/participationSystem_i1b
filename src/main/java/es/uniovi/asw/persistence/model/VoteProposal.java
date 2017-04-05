@@ -18,7 +18,7 @@ public class VoteProposal extends Vote{
 	public VoteProposal(Citizen citizen, Proposal prop) {
 		super(citizen);
 		this.proposal = prop;
-		Association.Voting.linkProposal(super.getCitizen(), this, prop);
+		setProposal(prop);
 	}
 	
 	public void setProposal(Proposal propuesta){

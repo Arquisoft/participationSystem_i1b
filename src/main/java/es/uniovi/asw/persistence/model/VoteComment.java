@@ -39,4 +39,8 @@ public class VoteComment extends Vote{
 	public void setCitizen(Citizen citizen2) {
 		Association.Voting.linkComment(citizen2, this, comment);
 	}
+
+	
+
+	
 }

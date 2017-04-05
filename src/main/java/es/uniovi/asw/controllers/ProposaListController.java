@@ -1,8 +1,10 @@
 package es.uniovi.asw.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -33,6 +35,7 @@ public class ProposaListController {
 	@PostConstruct
 	public void init() {
 		list= factoria.getServicesFactory().getProposalService().findAll();
+		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 	}
 	
 
@@ -103,15 +106,27 @@ public class ProposaListController {
 	
 	public List<Comment> showComments()
 	{
-		 comments = factoria.getServicesFactory().getProposalService().findByProposal(selectedProposal);
+		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
 		return comments;
 	}
 
 	public void voteProposal(){
-		System.out.println("votando");
+		//System.out.println("votando");
+		
+//		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);		
+//		List<VoteProposal> votesProposal = new ArrayList<VoteProposal>();
+//		for(Vote vote:votes)
+//		{
+//			if(((VoteProposal)vote).getProposal().equals(selectedProposal))
+//			{
+//				votesProposal.add((VoteProposal)vote);
+//			}
+//		}
+//		selectedProposal.setVotes(votesProposal);
 		Vote vote= new VoteProposal(citizen,selectedProposal);
-		if(factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen).contains(vote)){
-			
+		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);
+		if(votes.contains(vote)){
+			System.out.println("ya votaste");
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);

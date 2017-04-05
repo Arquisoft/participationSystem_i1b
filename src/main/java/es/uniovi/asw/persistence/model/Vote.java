@@ -39,5 +39,7 @@ public abstract class Vote {
 	public Citizen getCitizen() {
 		return citizen;
 	}	
+	
+	
 
 }
