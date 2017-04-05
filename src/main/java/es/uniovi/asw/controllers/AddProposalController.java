@@ -71,7 +71,7 @@ public class AddProposalController {
 
 	private boolean checkDescription() {
 		if(description.length()>0)
-		{
+		{			
 			for (ForbiddenWords fw : forbiddenWords) {
 				if(description.contains(fw.getWord()))
 				{
@@ -81,6 +81,7 @@ public class AddProposalController {
 			}
 			return true;
 		}
+		errorEmptyField();
 		return false;
 
 	}
@@ -98,6 +99,7 @@ public class AddProposalController {
 			}
 			return true;
 		}
+		errorEmptyField();
 		return false;
 	}
 
@@ -107,6 +109,10 @@ public class AddProposalController {
 	
 	private void errorProposalAlreadyExists() {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The proposal you are trying to create already exists"));
+	}
+	
+	private void errorEmptyField() {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The field cannot be empty"));
 	}
 
 	public String getTitle() {

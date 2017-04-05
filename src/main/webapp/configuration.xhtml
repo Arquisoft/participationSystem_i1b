@@ -57,6 +57,21 @@
 						</p:panel>
 					</p:tab>
 					
+					<p:tab id="minVotesTab" title="Minimum Votes">
+						<p:fieldset legend="Info">
+							<h:outputText
+								value="Set the minimum number of votes for a proposal to be accepted.">
+							</h:outputText>
+							<br />
+						</p:fieldset>
+						<p:panel header="Minimum Votes">
+							<h:outputText value="Minimum Votes:  ">
+							</h:outputText>
+							<p:spinner id="minVotesSpinner"
+								value="#{configController.minVotes}" min="0" />
+						</p:panel>
+					</p:tab>
+					
 					<p:tab id="categories" title="Categories">
 						<p:fieldset legend="Info">
 							<h:outputText value="Configure categories in which the proposals will be organized">

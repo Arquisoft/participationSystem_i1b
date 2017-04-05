@@ -3,6 +3,7 @@ package es.uniovi.asw.persistence.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,16 +18,18 @@ public class Configuration {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToMany(mappedBy="conf",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="conf",fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<ForbiddenWords> forbiddenWords= new HashSet<ForbiddenWords>();
 	private int deadline; //tiempo de vida de las propuestas en dias
 	//the categories that are in the table categories are the only existing ones
+	private int minVotesToAcceptProposal;
 	
 	public Configuration(){}
 
-	public Configuration(Set<ForbiddenWords> forbiddenWords, int deadline) {
+	public Configuration(Set<ForbiddenWords> forbiddenWords, int deadline, int minVotes) {
 		setForbiddenWords(forbiddenWords);;
 		this.deadline = deadline;
+		this.minVotesToAcceptProposal = minVotes;
 	}
 
 	public Set<ForbiddenWords> getForbiddenWords() {
@@ -65,6 +68,16 @@ public class Configuration {
 	public void setDeadline(int deadline) {
 		this.deadline = deadline;
 	}
+
+	public int getMinVotesToAcceptProposal() {
+		return minVotesToAcceptProposal;
+	}
+
+	public void setMinVotesToAcceptProposal(int minVotesToAcceptProposal) {
+		this.minVotesToAcceptProposal = minVotesToAcceptProposal;
+	}
+	
+	
 	
 	
 	

@@ -13,15 +13,14 @@
 					style="margin-bottom:10px; width:50%">
 					<h:panelGrid columns="3" cellpadding="5">
 						<h:outputLabel value="Title:"></h:outputLabel>
-						<p:inputText value="#{addProposal.title}" required="true" requiredMessage="The title cannot be empty">
+						<p:inputText value="#{addProposal.title}" >
 						</p:inputText>
 						<br />
 						<br />
 						<h:outputLabel value="Description:    "></h:outputLabel>
 						<p:inputTextarea rows="5" cols="30" counter="display"
 							value="#{addProposal.description}" maxlength="200"
-							counterTemplate="{0} characters remaining." autoResize="false" 
-							required="true" requiredMessage="The description cannot be empty"/>
+							counterTemplate="{0} characters remaining." autoResize="false"/>
 						<h:outputText id="display" />
 						<h:outputLabel for="category" value="Category:" />
 						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
@@ -29,7 +28,6 @@
 						</h:selectOneMenu>
 						<br />
 						<br />
-						<h:commandButton value="Save" action="#{addProposal.addProposal}" />
 						<br />
 					</h:panelGrid>
 					<p:messages id="message" showDetail="true" autoUpdate="true"

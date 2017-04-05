@@ -19,10 +19,11 @@ import es.uniovi.asw.persistence.model.Configuration;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 @Component("configController")
-@Scope("request")
+@Scope("session")
 public class ConfigurationController {
 
 	private int lifetime;
+	private int minVotes;
 	private Configuration conf;
 	List<Category> oldCategories;
 	List<Category> actualCategories;
@@ -47,10 +48,13 @@ public class ConfigurationController {
 		{
 			words = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
 			lifetime = conf.getDeadline();
+			minVotes = conf.getMinVotesToAcceptProposal();
+			
 		}
 		else{
 			words = new ArrayList<ForbiddenWords>();
 			lifetime = 0;
+			minVotes = 0;
 		}		
 	}
 
@@ -117,17 +121,19 @@ public class ConfigurationController {
 				
 	}
 
-	public void saveConfig() {
+	public String saveConfig() {
 		for(Category c : actualCategories){
 			if(!oldCategories.contains(c)) {
 				factoria.getServicesFactory().getCategoryService().save(c);
 			}
 		}
 		for(ForbiddenWords word : words) {
-			factoria.getServicesFactory().getForbiddenWordsService().save(word);;
+			word.setConf(conf);
 		}
 		conf.setDeadline(lifetime);
+		conf.setMinVotesToAcceptProposal(minVotes);
 		factoria.getServicesFactory().getConfigurationService().save(conf);
+		return "confSaved";
 	}
 
 	public int getLifetime() {
@@ -209,6 +215,16 @@ public class ConfigurationController {
 	public void setAddCategoryInput(String addCategoryInput) {
 		this.addCategoryInput = addCategoryInput;
 	}
+
+	public int getMinVotes() {
+		return minVotes;
+	}
+
+	public void setMinVotes(int minVotes) {
+		this.minVotes = minVotes;
+	}
+	
+	
 	
 	
 

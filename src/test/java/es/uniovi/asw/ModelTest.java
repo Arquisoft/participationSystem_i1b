@@ -219,9 +219,9 @@ public class ModelTest {
 		
 		ConfigurationService service= servicesFactory.getConfigurationService();
 		
-		Configuration config1= new Configuration(new HashSet<ForbiddenWords>(), 10);
-		Configuration config2= new Configuration(new HashSet<ForbiddenWords>(), 8);
-		Configuration config3= new Configuration(new HashSet<ForbiddenWords>(), 5);
+		Configuration config1= new Configuration(new HashSet<ForbiddenWords>(), 10, 2000);
+		Configuration config2= new Configuration(new HashSet<ForbiddenWords>(), 8, 1000);
+		Configuration config3= new Configuration(new HashSet<ForbiddenWords>(), 5, 50000);
 		
 		service.save(config1);
 		service.save(config2);
