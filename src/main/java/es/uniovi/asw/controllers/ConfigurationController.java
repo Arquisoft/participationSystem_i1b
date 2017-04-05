@@ -19,7 +19,7 @@ import es.uniovi.asw.persistence.model.Configuration;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 @Component("configController")
-@Scope("session")
+@Scope("request")
 public class ConfigurationController {
 
 	private int lifetime;
