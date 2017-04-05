@@ -2,6 +2,7 @@ package es.uniovi.asw;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
@@ -23,12 +24,19 @@ import com.sun.faces.config.ConfigureListener;
 @SpringBootApplication
 @ComponentScan(basePackages = {"es.uniovi.asw"})
 @EnableJpaRepositories("es.uniovi.asw.persistence.repositories")
-public class Application extends SpringBootServletInitializer implements ServletContextAware {
+public class Application extends SpringBootServletInitializer implements ServletContextAware, CommandLineRunner{
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
         app.run(args);        
     }
+    
+    @Override
+	public void run(String... arg0) throws Exception {
+		System.out.println("en este metodo creamos los usuarios y la base de datos si no esta creada");
+		
+	}
+   
     @Bean
     public ServletRegistrationBean facesServletRegistraiton() {
         ServletRegistrationBean registration = new ServletRegistrationBean(new FacesServlet(), "*.xhtml");
@@ -84,4 +92,6 @@ public class Application extends SpringBootServletInitializer implements Servlet
                       new TomcatEmbeddedServletContainerFactory();
         return factory;
      }
+
+	
 }
