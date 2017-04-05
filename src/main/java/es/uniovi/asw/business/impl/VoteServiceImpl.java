@@ -20,7 +20,6 @@ public class VoteServiceImpl implements VoteService{
 	public void save(Vote vote) {
 		
 		factories.getPersistenceFactory().getVoteRepository().save(vote);
-
 	}
 	//cast it to voteComment when u iterate over it
 	@Override
@@ -33,7 +32,5 @@ public class VoteServiceImpl implements VoteService{
 	public List<Vote> findProposalVotesByCitizen(Citizen citizen) {
 		return factories.getPersistenceFactory().getVoteRepository().findProposalVotesByCitizen(citizen);
 	}
-
-
 
 }

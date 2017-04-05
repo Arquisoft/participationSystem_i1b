@@ -29,10 +29,6 @@ public class ProposaListController {
 	private Proposal selectedProposal;
 	private List<Comment> comments;
 	private int score;
-	private VoteProposal vote;
-
-	
-
 
 	@PostConstruct
 	public void init() {
@@ -111,21 +107,16 @@ public class ProposaListController {
 		return comments;
 	}
 
-	
-	public String voteProposal(Proposal pr){
-		selectedProposal=pr;
+	public void voteProposal(){
 		System.out.println("votando");
-		vote= new VoteProposal(citizen,selectedProposal);
+		Vote vote= new VoteProposal(citizen,selectedProposal);
 		if(factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen).contains(vote)){
-			return "not_working";
 			
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);
 			selectedProposal.setScore(score++);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
-			return "working";
-			
 		}
 	}
 
@@ -145,21 +136,4 @@ public class ProposaListController {
 	public void setScore(int score) {
 		this.score = score;
 	}
-
-
-
-	public VoteProposal getVote() {
-		return vote;
-	}
-
-
-
-	public void setVote(VoteProposal vote) {
-		this.vote = vote;
-	}
-
-
-
-
-	
 }

@@ -17,17 +17,18 @@
 					<h:outputText id="counter" value="#{ProposalListController.score}"
 						style="margin-left:10px" />
 					<br />
-					<p:commandButton id="btn_add_Comment" icon="ui-icon-circle-arrow-n"
-						action="#{ProposalListController.voteProposal(proposal)}"></p:commandButton>
+					<p:commandButton icon="ui-icon-circle-arrow-n"
+						action="#{ProposalListController.voteProposal()}" 
+						update="counter" />
 				</h:panelGrid>
 			</p:fieldset>
 			<p:panel style="float: left; text-align:left; margin-left:320px;  ">
 				<p:accordionPanel value="#{ProposalListController.showComments()}"
 					var="comment" style="float:left; margin-bottom:20px; "
 					multiple="true">
-					<p:tab title="#{comment.citizen}">
+					<p:tab title="#{comment.getCitizen()}">
 						<h:panelGrid columns="2" cellpadding="10">
-							<h:outputText value="#{comment.text}" />
+							<h:outputText value="#{comment.getText()}" />
 						</h:panelGrid>
 					</p:tab>
 				</p:accordionPanel>
