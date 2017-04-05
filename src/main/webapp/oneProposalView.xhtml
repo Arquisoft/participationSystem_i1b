@@ -24,9 +24,21 @@
 					</h:panelGrid>
 				</p:fieldset>
 				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
-					<p:accordionPanel value="#{ProposalListController.showComments()}"
-						var="comment" style="float:left; margin-bottom:20px; "
-						multiple="true">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputLabel value="New Comment: "/>
+						<p:inputTextarea rows="5" cols="30"
+							value="#{ProposalListController.textComment}" maxlength="200"
+							counterTemplate="{0} characters remaining." autoResize="false"
+							required="true" requiredMessage="The description cannot be empty" />
+						<p:commandButton value="Save Comment"
+							action="#{ProposalListController.addComment()}" update="comments"
+							immediate="true" />
+					</h:panelGrid>
+				</p:panel>
+				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
+					<p:accordionPanel id="comments"
+						value="#{ProposalListController.showComments()}" var="comment"
+						style="float:left; margin-bottom:20px; " multiple="true">
 						<p:tab title="#{comment.getCitizen()}">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:outputText value="#{comment.getText()}" />

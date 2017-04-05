@@ -142,6 +142,7 @@ public class ProposaListController {
 		}
 	}
 	public void addComment(){
+		System.out.println(textComment);
 		
 		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
 		factoria.getServicesFactory().getCommentService().save(coment);
