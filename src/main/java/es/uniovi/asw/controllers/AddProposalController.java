@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
+import es.uniovi.asw.persistence.model.ForbiddenWords;
 import es.uniovi.asw.persistence.model.Proposal;
 
 @Component("addProposal")
@@ -28,6 +29,8 @@ public class AddProposalController {
 	private Category category;
 	private List<Category> categories;
 	private List<String> categoriesName=new ArrayList<String>();
+	private List<ForbiddenWords> forbiddenWords;
+	private List<String> forbiddenWordsName=new ArrayList<String>();
 	
 	@Autowired
 	private Factories factoria;
@@ -48,7 +51,13 @@ public class AddProposalController {
 		
 		return "success";
 	}
-
+	public void checkForbiddenWord(){
+		forbiddenWords=factoria.getServicesFactory().getForbiddenWordsService().findAll();
+		for (ForbiddenWords fw : forbiddenWords) {
+			forbiddenWordsName.add(fw.getWord());
+		}
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -112,6 +121,24 @@ public class AddProposalController {
 	public void setCategoriesName(List<String> categoriesName) {
 		this.categoriesName = categoriesName;
 	}
+
+	public List<ForbiddenWords> getForbiddenWords() {
+		return forbiddenWords;
+	}
+
+	public void setForbiddenWords(List<ForbiddenWords> forbiddenWords) {
+		this.forbiddenWords = forbiddenWords;
+	}
+
+	public List<String> getForbiddenWordsName() {
+		return forbiddenWordsName;
+	}
+
+	public void setForbiddenWordsName(List<String> forbiddenWordsName) {
+		this.forbiddenWordsName = forbiddenWordsName;
+	}
+
+
 	
 
 }

@@ -38,6 +38,12 @@
 			<to-view-id>/addProposal.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{addProposal.showProposal}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/oneProposalView.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
