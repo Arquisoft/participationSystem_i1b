@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
 import es.uniovi.asw.persistence.model.Vote;
+import es.uniovi.asw.persistence.model.VoteComment;
 import es.uniovi.asw.persistence.model.VoteProposal;
 
 @Component("ProposalListController")
@@ -132,7 +134,7 @@ public class ProposaListController {
 		Vote vote= new VoteProposal(citizen,selectedProposal);
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);
 		if(votes.contains(vote)){
-			System.out.println("ya votaste");
+			errorAlreadyVoteProposal();
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);
@@ -141,6 +143,29 @@ public class ProposaListController {
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
 		}
 	}
+	
+	private void errorAlreadyVoteProposal() {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this proposal!"));
+	}
+	
+	private void errorAlreadyVoteComment() {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this comment!"));		
+	}
+
+	public void voteComment(Comment comment){
+		Vote vote= new VoteComment(citizen,comment);
+		List<Vote> votes = factoria.getServicesFactory().getVoteService().findCommentVotesByCitizen(citizen);
+		if(votes.contains(vote)){
+			errorAlreadyVoteComment();
+		}
+		else{
+			factoria.getServicesFactory().getVoteService().save(vote);
+			comment.setScore(getScore()+1);
+			factoria.getServicesFactory().getCommentService().save(comment);
+		}
+	}
+
+
 	public void addComment(){
 		System.out.println(textComment);
 		

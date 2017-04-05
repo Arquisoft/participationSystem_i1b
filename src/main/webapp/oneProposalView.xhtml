@@ -23,6 +23,8 @@
 							immediate="true" />
 					</h:panelGrid>
 				</p:fieldset>
+				<p:messages id="messageErrProposal" showDetail="true" autoUpdate="true"
+									closable="true" />
 				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
 					<h:panelGrid columns="2" cellpadding="10">
 						<h:outputLabel value="New Comment: "/>
@@ -42,6 +44,10 @@
 						<p:tab title="#{comment.getCitizen()}">
 							<h:panelGrid columns="2" cellpadding="10">
 								<h:outputText value="#{comment.getText()}" />
+								<h:outputText value="#{comment.getScore()}" />
+								<p:commandButton icon="ui-icon-circle-arrow-n"
+							action="#{ProposalListController.voteComment(comment)}" update="comments"
+							immediate="true" />
 							</h:panelGrid>
 						</p:tab>
 					</p:accordionPanel>
