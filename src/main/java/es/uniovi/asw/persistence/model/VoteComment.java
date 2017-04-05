@@ -12,9 +12,9 @@ public class VoteComment extends Vote{
 
 	@ManyToOne
 	private Comment comment;
-	
+
 	public VoteComment(){
-		
+
 	}
 
 	public VoteComment(Citizen citizen, Comment comment) {
@@ -40,7 +40,37 @@ public class VoteComment extends Vote{
 		Association.Voting.linkComment(citizen2, this, comment);
 	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
+		return result;
+	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VoteComment other = (VoteComment) obj;
+		if(super.getCitizen().equals(other.getCitizen())) {
+			if (comment == null)
+			{
+				if (other.comment != null)
+					return false;
+			} 
+			else if (!comment.equals(other.comment))
+				return false;
+			return true;
+		}
+		return false;
+	}
+
+
+
+
 }

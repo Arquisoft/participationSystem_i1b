@@ -37,5 +37,27 @@ public class VoteProposal extends Vote{
 	public void setCitizen(Citizen citizen2) {
 			Association.Voting.linkProposal(citizen2, this, proposal);		
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VoteProposal other = (VoteProposal) obj;
+		if(super.getCitizen().equals(other.getCitizen())) {
+			if (proposal == null)
+			{
+				if (other.proposal != null)
+					return false;
+			} 
+			else if (!proposal.equals(other.proposal))
+				return false;
+			return true;
+		}
+		return false;
+	}
 
 }

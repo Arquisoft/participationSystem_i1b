@@ -39,6 +39,45 @@ public class Comment {
 		this.creationDate = creationDate;
 		this.score = score;
 	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((citizen == null) ? 0 : citizen.hashCode());
+		result = prime * result + ((proposal == null) ? 0 : proposal.hashCode());
+		result = prime * result + ((votes == null) ? 0 : votes.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comment other = (Comment) obj;
+		if (citizen == null) {
+			if (other.citizen != null)
+				return false;
+		} else if (!citizen.equals(other.citizen))
+			return false;
+		if (proposal == null) {
+			if (other.proposal != null)
+				return false;
+		} else if (!proposal.equals(other.proposal))
+			return false;
+		if (votes == null) {
+			if (other.votes != null)
+				return false;
+		} else if (!votes.equals(other.votes))
+			return false;
+		return true;
+	}
 
 	public String getText() {
 		return text;

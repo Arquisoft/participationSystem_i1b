@@ -43,6 +43,16 @@
 			<from-outcome>goToView</from-outcome>
 			<to-view-id>/oneProposalView.xhtml</to-view-id>
 			<redirect />
+		</navigation-case>		
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>oneProposalView.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.goToListView}</from-action>
+			<from-outcome>listView</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	

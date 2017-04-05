@@ -104,6 +104,10 @@ public class ProposaListController {
 		return "addView";
 	}
 	
+	public String goToListView(){
+		return "listView";
+	}
+	
 	public List<Comment> showComments()
 	{
 		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
@@ -130,7 +134,8 @@ public class ProposaListController {
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);
-			selectedProposal.setScore(score++);
+			score = selectedProposal.getScore()+1;
+			selectedProposal.setScore(score);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
 		}
 	}

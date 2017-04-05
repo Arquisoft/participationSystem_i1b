@@ -40,6 +40,7 @@ public abstract class Vote {
 		return citizen;
 	}	
 	
-	
+	@Override
+	public abstract boolean equals(Object obj);
 
 }
