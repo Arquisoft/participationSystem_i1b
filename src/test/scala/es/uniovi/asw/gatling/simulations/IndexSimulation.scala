@@ -18,8 +18,6 @@ class IndexSimulation extends Simulation {
 
 	val headers_0 = Map("Upgrade-Insecure-Requests" -> "1")
 
-
-
 	val scn = scenario("IndexSimulation")
 		.exec(http("request_0")
 			.get("/")

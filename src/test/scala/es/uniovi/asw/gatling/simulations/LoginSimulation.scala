@@ -24,8 +24,6 @@ class LoginSimulation extends Simulation {
 		"Faces-Request" -> "partial/ajax",
 		"X-Requested-With" -> "XMLHttpRequest")
 
-
-
 	val scn = scenario("LoginSimulation")
 		.exec(http("request_0")
 			.get("/")

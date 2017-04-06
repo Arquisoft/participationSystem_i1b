@@ -251,8 +251,7 @@
 					<resultsFolder>target/gatling/results</resultsFolder>
 					<bodiesFolder>src/test/resources/bodies</bodiesFolder>
 					<simulationsFolder>src/test/scala</simulationsFolder>
-					<simulationClass>es.uniovi.asw.gatling.simulations.IndexSimulation</simulationClass>
-					<simulationClass>es.uniovi.asw.gatling.simulations.LoginSimulation</simulationClass>
+					<runMultipleSimulations>true</runMultipleSimulations>
 				</configuration>
 				<executions>
 					<execution>
