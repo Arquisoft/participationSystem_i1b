@@ -19,7 +19,7 @@ public class Annotation {
 	
    @When("^I open the ParticipationSystem website$") 
    public void goToParticipation() { 
-      driver.navigate().to("https://localhost:8080"); 
+      driver.navigate().to("http://localhost:8080"); 
    } 
 	
    @Then("^login form should exist$") 

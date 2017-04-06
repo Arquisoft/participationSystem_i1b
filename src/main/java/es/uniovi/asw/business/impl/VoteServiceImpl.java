@@ -9,7 +9,6 @@ import es.uniovi.asw.business.VoteService;
 import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Vote;
-import es.uniovi.asw.persistence.model.VoteComment;
 
 @Service
 public class VoteServiceImpl implements VoteService{

@@ -2,8 +2,6 @@ package es.uniovi.asw.business;
 
 import java.util.List;
 
-import es.uniovi.asw.persistence.model.Category;
-import es.uniovi.asw.persistence.model.Configuration;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 public interface ForbiddenWordsService {

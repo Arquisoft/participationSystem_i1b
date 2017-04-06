@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.ForbiddenWordsService;
 import es.uniovi.asw.infraestructure.Factories;
-import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 @Service
