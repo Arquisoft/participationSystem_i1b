@@ -16,7 +16,9 @@
 			<h:form>
 				<p:dataTable id="tablaListaProposals" var="proposal"
 					value="#{ProposalListController.showProposals()}"
-					sortMode="multiple">
+					sortMode="multiple" rows="8" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="8">
 					<f:facet name="header">Proposals</f:facet>
 					<p:column headerText="Title" sortBy="#{proposal.title}">
 						<h:outputText value="#{proposal.title}" />

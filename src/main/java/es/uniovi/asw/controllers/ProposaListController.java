@@ -154,13 +154,23 @@ public class ProposaListController {
 
 	public void voteComment(Comment comment){
 		Vote vote= new VoteComment(citizen,comment);
+		boolean found = false;
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findCommentVotesByCitizen(citizen);
-		if(votes.contains(vote)){
+		for(Vote v: votes)
+		{
+			VoteComment v1 = (VoteComment) v ;
+			VoteComment v2= (VoteComment) vote;
+			if(v1.getComment().getId()==v2.getComment().getId())
+			{
+				found=true;
+			}
+		}
+		if(found){
 			errorAlreadyVoteComment();
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);
-			comment.setScore(getScore()+1);
+			comment.setScore(comment.getScore()+1);
 			factoria.getServicesFactory().getCommentService().save(comment);
 		}
 	}
