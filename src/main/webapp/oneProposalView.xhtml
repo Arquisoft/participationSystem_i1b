@@ -34,7 +34,7 @@
 							required="true" requiredMessage="The description cannot be empty" />
 						<p:commandButton value="Save Comment"
 							action="#{ProposalListController.addComment()}" update="comments"
-							immediate="true" />
+							process="@form" partialSubmit="true" ajax="true" />
 					</h:panelGrid>
 				</p:panel>
 				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
