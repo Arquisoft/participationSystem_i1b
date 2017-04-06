@@ -63,8 +63,8 @@ public class ModelTest {
 	public void testCitizen() {
 		
 		CitizenService service = servicesFactory.getCitizenService();
-		Citizen gabriel = new Citizen("Gabriel","Reguero",createDate("31/12/1995"), "emailGabriel@test.com","55433455B", "dd","dd", 2);
-		Citizen nacho = new Citizen("Nacho", "Fernandez", createDate("08/01/1995"), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
+		Citizen gabriel = new Citizen("Gabriel1","Reguero",createDate("31/12/1995"), "emailGabriel1@test.com","55433455B", "dd","dd", 2);
+		Citizen nacho = new Citizen("Nacho1", "Fernandez", createDate("08/01/1995"), "emailNacho1@test.com", "71724768J", "mi casa", "española", 47);
 		
 		service.save(gabriel);
 		service.save(nacho);
@@ -177,7 +177,7 @@ public class ModelTest {
 		
 		AdministratorService service5= servicesFactory.getAdministratorService();
 		
-		Administrator admin= new Administrator("admin","admin");
+		Administrator admin= new Administrator("admin2","admin2");
 		
 		service5.save(admin);
 		
