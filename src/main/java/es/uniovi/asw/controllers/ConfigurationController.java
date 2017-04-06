@@ -23,9 +23,9 @@ public class ConfigurationController {
 	private int lifetime;
 	private int minVotes;
 	private Configuration conf;
-	List<Category> oldCategories;
-	List<Category> actualCategories;
-	List<ForbiddenWords> words;
+	private List<Category> oldCategories;
+	private List<Category> actualCategories;
+	private List<ForbiddenWords> words;
 
 	//event attributes
 	private boolean skip;

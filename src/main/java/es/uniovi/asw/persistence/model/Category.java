@@ -16,7 +16,7 @@ public class Category {
 	@Id
 	@GeneratedValue
 	private Long id;
-	String name;
+	private String name;
 	@OneToMany(mappedBy="category", fetch = FetchType.EAGER)
 	private List<Proposal> proposals= new ArrayList<Proposal>();
 	

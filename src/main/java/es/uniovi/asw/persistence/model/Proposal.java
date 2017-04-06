@@ -119,7 +119,7 @@ public class Proposal implements Serializable{
 	public void setVotes(List<VoteProposal> votes) {
 		if(votes.isEmpty())
 		{
-			votes = new ArrayList<VoteProposal>();
+			this.votes = new ArrayList<VoteProposal>();
 		}
 		else{
 			for(VoteProposal vote: votes)
