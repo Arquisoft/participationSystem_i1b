@@ -7,8 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -179,11 +177,8 @@ public class ProposaListController {
 
 
 	public void addComment(){
-		System.out.println(textComment);
-		
 		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
 		factoria.getServicesFactory().getCommentService().save(coment);
-		
 	}
 
 	public List<Comment> getComments() {

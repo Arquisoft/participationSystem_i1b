@@ -11,6 +11,7 @@ import cucumber.api.java.en.When;
 
 public class Annotation { 
    WebDriver driver = null; 
+   private String baseUrl = "http://localhost:8080/";
 	
    @Given("^I have open the browser$") 
    public void openBrowser() { 
@@ -19,7 +20,7 @@ public class Annotation {
 	
    @When("^I open the ParticipationSystem website$") 
    public void goToParticipation() { 
-      driver.navigate().to("http://localhost:8080"); 
+      driver.navigate().to(baseUrl); 
    } 
 	
    @Then("^login form should exist$") 
@@ -31,4 +32,20 @@ public class Annotation {
       } 
       driver.close(); 
    } 
+   
+	@Then("^I login with the admin user$")
+	public void loginAdmin() {
+		driver.get(baseUrl + "/login.xhtml");
+		driver.findElement(By.id("j_idt4:j_idt7")).clear();
+		driver.findElement(By.id("j_idt4:j_idt7")).sendKeys("admin");
+		driver.findElement(By.id("j_idt4:j_idt9")).clear();
+		driver.findElement(By.id("j_idt4:j_idt9")).sendKeys("admin");
+		driver.findElement(By.id("j_idt4:j_idt10")).click();
+		if (driver.findElement(By.id("j_idt7")).isEnabled()) {
+			System.out.println("Admin login functionality works");
+		} else {
+			System.out.println("Admin login functionality fails");
+		}
+		driver.close();
+	}
 }
