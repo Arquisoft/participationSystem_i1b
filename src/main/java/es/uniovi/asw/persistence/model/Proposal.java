@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +35,9 @@ public class Proposal implements Serializable{
 	private Citizen citizen; //the citizen that creates it
 	private int score;
 	private Date creationDate;
-	@OneToMany(mappedBy="proposal")
+	@OneToMany(mappedBy="proposal", cascade={CascadeType.ALL})
 	private List<Comment> comments= new ArrayList<Comment>();
-	@OneToMany(mappedBy="proposal")
+	@OneToMany(mappedBy="proposal", cascade={CascadeType.ALL})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
 

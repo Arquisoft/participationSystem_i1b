@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Comment {
 	private Citizen citizen;
 	private Date creationDate;
 	private int score;
-	@OneToMany(mappedBy="comment", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="comment", fetch = FetchType.EAGER, cascade={CascadeType.ALL})
 	private List<VoteComment> votes= new ArrayList<VoteComment>();
 	
 	public Comment(){}
