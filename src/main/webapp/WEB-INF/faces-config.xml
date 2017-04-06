@@ -46,6 +46,16 @@
 		</navigation-case>		
 	</navigation-rule>
 	
+		<navigation-rule>
+		<from-view-id>proposalListAdmin.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.selectProposal(proposal)}</from-action>
+			<from-outcome>goToView</from-outcome>
+			<to-view-id>/oneProposalViewAdmin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
+	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>oneProposalView.xhtml</from-view-id>
 		<navigation-case>
