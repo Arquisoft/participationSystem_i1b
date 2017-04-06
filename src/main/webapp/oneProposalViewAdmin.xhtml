@@ -6,17 +6,23 @@
 	</h:head>
 	<h:body>
 		<center>
+			<h1 style="margin-top: 20px">Proposal View</h1>
+			<p:button href="proposalListAdmin.xhtml" value="Return to the main view" />
 			<h:form>
 				<p:fieldset legend="#{ProposalListController.title}"
 					style="margin:50px 50px 50px 50px; text-align: left; width:50%">
 					<h:panelGrid columns="2" cellpadding="5">
 						<p:panel style="text-align: center">
+							<h3>Description</h3>
 							<h:outputText value="#{ProposalListController.description}"
 								style="margin-right:50px" />
 						</p:panel>
 						<br />
+						<p:panel style="text-align: center">
+						<h3>Score</h3>
 						<h:outputText id="counter" value="#{ProposalListController.score}"
 							style="margin-left:10px" />
+						</p:panel>
 						<br />
 					</h:panelGrid>
 				</p:fieldset>
@@ -28,7 +34,9 @@
 						style="float:left; margin-bottom:20px; " multiple="true">
 						<p:tab title="#{comment.getCitizen()}">
 							<h:panelGrid columns="2" cellpadding="10">
+								<h3>Description</h3>
 								<h:outputText value="#{comment.getText()}" />
+								<h3>Score</h3>
 								<h:outputText value="#{comment.getScore()}" />
 							</h:panelGrid>
 						</p:tab>
