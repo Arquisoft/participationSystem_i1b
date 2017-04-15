@@ -31,7 +31,7 @@
 				</p:fieldset>
 				<p:messages id="messageErrProposal" showDetail="true" autoUpdate="true"
 									closable="true" />
-				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
+				<p:panel id="panelComments" style="float: left; text-align:left; margin-left:320px;  ">
 					<h:panelGrid columns="2" cellpadding="10">
 						<h:outputLabel value="New Comment: "/>
 						<p:inputTextarea rows="5" cols="30"
@@ -39,7 +39,7 @@
 							counterTemplate="{0} characters remaining." autoResize="false"
 							required="true" requiredMessage="The description cannot be empty" />
 						<p:commandButton value="Save Comment"
-							action="#{ProposalListController.addComment()}" update="comments"
+							action="#{ProposalListController.addComment()}" update="comments, panelComments"
 							process="@form" partialSubmit="true" ajax="true" />
 					</h:panelGrid>
 				</p:panel>
